@@ -17,6 +17,7 @@ import { PostAJobComponent } from './post-a-job/post-a-job.component';
 import { JobComponent } from './job/job.component';
 import { PlacesComponent } from './places/places.component';
 import { JobEditorComponent } from './job-editor/job-editor.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { JobEditorComponent } from './job-editor/job-editor.component';
     PostAJobComponent,
     JobComponent,
     PlacesComponent,
-    JobEditorComponent
+    JobEditorComponent,
+    ThankYouComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-7 mt-10">
+      <div
+        class="card card-border border-primary shadow-light-lg mb-6 mb-md-8 aos-init aos-animate"
+        data-aos="fade-up"
+      >
+        <div class="card-body">
+          <h1 className="mb-0 font-weight-bold text-center">
+            Log In / Sign Up
+          </h1>
+
+          <p className="mb-6 text-center text-muted">
+            To ensure maximum security and simplicity, we recommend signing
+            up/logging in using a secure authentication provider.
+          </p>
+
+          <button
+            type="button"
+            class="btn btn-primary-soft btn-block mb-5"
+            (click)="signInWithGoogle()"
+          >
+            Login with Google
+          </button>
+
+          <small className="d-block text-center text-muted">
+            If you do not already have an account, we will create one for you.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

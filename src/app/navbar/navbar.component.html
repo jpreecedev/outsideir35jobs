@@ -48,12 +48,23 @@
         </li>
         <li class="nav-item">
           <a
+            *ngIf="!authService.isLoggedIn()"
             class="nav-link"
-            href="#"
+            routerLink="auth"
             aria-haspopup="true"
             aria-expanded="false"
           >
             Log In / Sign Up
+          </a>
+          <a
+            *ngIf="authService.isLoggedIn()"
+            class="nav-link"
+            routerLink="/"
+            (click)="authService.logout()"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Log Out
           </a>
           <!-- / .row -->
         </li>

@@ -8,6 +8,8 @@ import { HeroComponent } from './hero/hero.component';
 import { IconsModule } from './icons/icons.module';
 import { LatestPostsComponent } from './latest-posts/latest-posts.component';
 import { FooterComponent } from './footer/footer.component';
+import { LandingComponent } from './landing/landing.component';
+import { JobsComponent } from './jobs/jobs.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     HeroComponent,
     LatestPostsComponent,
-    FooterComponent
+    FooterComponent,
+    LandingComponent,
+    JobsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, IconsModule],
   providers: [],

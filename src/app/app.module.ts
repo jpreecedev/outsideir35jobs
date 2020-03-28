@@ -10,6 +10,8 @@ import { LatestPostsComponent } from './latest-posts/latest-posts.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
 import { JobsComponent } from './jobs/jobs.component';
+import { PostAJobComponent } from './post-a-job/post-a-job.component';
+import { JobComponent } from './job/job.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { JobsComponent } from './jobs/jobs.component';
     LatestPostsComponent,
     FooterComponent,
     LandingComponent,
-    JobsComponent
+    JobsComponent,
+    PostAJobComponent,
+    JobComponent
   ],
   imports: [BrowserModule, AppRoutingModule, IconsModule],
   bootstrap: [AppComponent]

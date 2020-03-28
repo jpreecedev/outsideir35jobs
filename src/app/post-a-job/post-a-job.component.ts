@@ -13,14 +13,14 @@ export class PostAJobComponent implements OnInit {
   dropdownSettings = {};
 
   ngOnInit(): void {
-    debugger;
     this.dropdownList = (skills as any).default;
     this.dropdownSettings = {
       singleSelection: false,
       text: 'Select skills',
       selectAllText: 'Select All',
       unSelectAllText: 'Unselect All',
-      enableSearchFilter: true
+      enableSearchFilter: true,
+      classes: 'custom-multiselect'
     };
   }
 

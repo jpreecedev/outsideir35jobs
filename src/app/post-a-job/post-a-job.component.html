@@ -19,7 +19,6 @@
                   id="jobTitle"
                   name="jobTitle"
                   placeholder="Job title"
-                  autocomplete="off"
                 />
               </div>
               <div class="form-group large">
@@ -47,22 +46,11 @@
                 <div>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-primary active">
-                      <input
-                        type="radio"
-                        name="options"
-                        id="remote"
-                        autocomplete="off"
-                        checked
-                      />
+                      <input type="radio" name="options" id="remote" checked />
                       Remote
                     </label>
                     <label class="btn btn-primary">
-                      <input
-                        type="radio"
-                        name="options"
-                        id="permanent"
-                        autocomplete="off"
-                      />
+                      <input type="radio" name="options" id="permanent" />
                       On site
                     </label>
                   </div>
@@ -95,7 +83,6 @@
                     id="rateFrom"
                     name="rateFrom"
                     placeholder="From (min)"
-                    autocomplete="off"
                   />
                 </div>
               </div>
@@ -108,7 +95,6 @@
                     id="rateTo"
                     name="rateTo"
                     placeholder="To (max)"
-                    autocomplete="off"
                   />
                 </div>
               </div>
@@ -161,12 +147,21 @@
                 id="companyName"
                 name="companyName"
                 placeholder="Company name"
-                autocomplete="off"
               />
             </div>
             <div class="form-group large">
               <label for="jobDescription">Job description</label>
               <app-job-editor id="jobDescription"></app-job-editor>
+            </div>
+            <div class="form-group large">
+              <label for="whereToApply">Where to apply</label>
+              <input
+                type="text"
+                class="form-control"
+                id="whereToApply"
+                name="whereToApply"
+                placeholder="https://yoursite.com/job/123/apply"
+              />
             </div>
           </div>
         </div>

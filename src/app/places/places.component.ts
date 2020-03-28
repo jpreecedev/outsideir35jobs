@@ -14,7 +14,9 @@ import {
   styleUrls: ['./places.component.css']
 })
 export class PlacesComponent implements OnInit, AfterViewInit {
-  @Input() adressType: string;
+  @Input() addressType: string;
+  @Input() id: string;
+  @Input() name: string;
   @Output() setAddress: EventEmitter<any> = new EventEmitter();
   @ViewChild('addresstext') addresstext: any;
 
@@ -34,7 +36,7 @@ export class PlacesComponent implements OnInit, AfterViewInit {
     const autocomplete = new google.maps.places.Autocomplete(
       this.addresstext.nativeElement,
       {
-        types: [this.adressType]
+        types: [this.addressType]
       }
     );
     // @ts-ignore

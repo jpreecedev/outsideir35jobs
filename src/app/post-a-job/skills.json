@@ -1,0 +1,19 @@
+[
+  { "id": 1, "itemName": "AdobeXD", "display": "Adobe XD" },
+  { "id": 2, "itemName": "AmazonAWS", "display": "Amazon AWS" },
+  { "id": 3, "itemName": "Azure", "display": "Azure" },
+  { "id": 4, "itemName": "CSharp", "display": "C#" },
+  { "id": 5, "itemName": "Design", "display": "Design" },
+  { "id": 6, "itemName": "Git", "display": "Git" },
+  { "id": 7, "itemName": "GoogleAnalytics", "display": "Google Analytics" },
+  { "id": 8, "itemName": "GoogleCloud", "display": "Google Cloud" },
+  { "id": 9, "itemName": "HTML5", "display": "HTML5" },
+  { "id": 10, "itemName": "Java", "display": "Java" },
+  { "id": 11, "itemName": "JavaScript", "display": "JavaScript" },
+  { "id": 12, "itemName": "React", "display": "React" },
+  { "id": 13, "itemName": "Sketch", "display": "Sketch" },
+  { "id": 14, "itemName": "Svelte", "display": "Svelte" },
+  { "id": 15, "itemName": "UX", "display": "UX" },
+  { "id": 16, "itemName": "Vue", "display": "Vue.js" },
+  { "id": 217, "itemName": "Webpack", "display": "Webpack" }
+]

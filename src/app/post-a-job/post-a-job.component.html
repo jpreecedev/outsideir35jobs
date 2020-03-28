@@ -12,17 +12,25 @@
             <h3 class="card-title text-body">Overview</h3>
             <form>
               <div class="form-group large">
-                <label for="exampleInputEmail1">Job title</label>
+                <label for="jobTitle">Job title</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
-                  placeholder="Enter email"
+                  id="jobTitle"
+                  name="jobTitle"
+                  placeholder="Job title"
                   autocomplete="off"
                 />
               </div>
               <div class="form-group large">
-                <label for="name">Skills</label>
+                <label for="category">Category</label>
+                <select class="custom-select" id="category" name="category">
+                  <option selected value="FrontEnd">Front-end</option>
+                  <option value="FullStack">Full stack</option>
+                </select>
+              </div>
+              <div class="form-group large">
+                <label for="skills">Skills</label>
                 <angular2-multiselect
                   [data]="dropdownList"
                   [(ngModel)]="selectedItems"
@@ -35,24 +43,24 @@
                 ></angular2-multiselect>
               </div>
               <div class="form-group large">
-                <label for="name">Job is...</label>
+                <label for="jobis">Job is...</label>
                 <div>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary-soft active">
+                    <label class="btn btn-primary active">
                       <input
                         type="radio"
                         name="options"
-                        id="option1"
+                        id="remote"
                         autocomplete="off"
                         checked
                       />
                       Remote
                     </label>
-                    <label class="btn btn-secondary-soft">
+                    <label class="btn btn-primary">
                       <input
                         type="radio"
                         name="options"
-                        id="option2"
+                        id="permanent"
                         autocomplete="off"
                       />
                       On site
@@ -61,10 +69,12 @@
                 </div>
               </div>
               <div class="form-group large">
-                <label for="exampleInputEmail1"
+                <label for="establishment"
                   >Head office location (if applicable)</label
                 >
                 <app-places
+                  id="establishment"
+                  name="establishment"
                   (setAddress)="getEstablishmentAddress($event)"
                   adressType="establishment"
                 ></app-places>
@@ -78,24 +88,26 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="form-group large">
-                  <label for="exampleInputEmail1">From (min)</label>
+                  <label for="rateFrom">From (min)</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Enter email"
+                    id="rateFrom"
+                    name="rateFrom"
+                    placeholder="From (min)"
                     autocomplete="off"
                   />
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="form-group large">
-                  <label for="exampleInputEmail1">To (max)</label>
+                  <label for="rateTo">To (max)</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Enter email"
+                    id="rateTo"
+                    name="rateTo"
+                    placeholder="To (max)"
                     autocomplete="off"
                   />
                 </div>
@@ -104,26 +116,21 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="form-group large">
-                  <label for="exampleInputEmail1">Per</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Enter email"
-                    autocomplete="off"
-                  />
+                  <label for="frequency">Frequency</label>
+                  <select class="custom-select" id="frequency" name="frequency">
+                    <option selected value="Day">Day</option>
+                    <option value="Hour">Hour</option>
+                  </select>
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="form-group large">
-                  <label for="exampleInputEmail1">Currency</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Enter email"
-                    autocomplete="off"
-                  />
+                  <label for="currency">Currency</label>
+                  <select class="custom-select" id="currency" name="currency">
+                    <option selected value="Day">GBP (&pound;)</option>
+                    <option value="Hour">USD (&#x24;)</option>
+                    <option value="Hour">EUR (&euro;)</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -133,28 +140,33 @@
           <div class="card-body">
             <h3 class="card-title text-body">Contract details</h3>
             <div class="form-group large">
-              <label for="exampleInputEmail1">Length</label>
+              <label for="contractLength">Length</label>
+              <select
+                class="custom-select"
+                id="contractLength"
+                name="contractLength"
+              >
+                <option selected value="Under1Month">Under 1 month</option>
+                <option value="OneToThree">1-3 months</option>
+                <option value="ThreeToSix">3-6 months</option>
+                <option value="SixToTwelve">6-12 months</option>
+                <option value="TwelvePlus">12+ months</option>
+              </select>
+            </div>
+            <div class="form-group large">
+              <label for="companyName">Company name</label>
               <input
                 type="text"
                 class="form-control"
-                id="exampleInputEmail1"
-                placeholder="Enter email"
+                id="companyName"
+                name="companyName"
+                placeholder="Company name"
                 autocomplete="off"
               />
             </div>
             <div class="form-group large">
-              <label for="exampleInputEmail1">Company name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                placeholder="Enter email"
-                autocomplete="off"
-              />
-            </div>
-            <div class="form-group large">
-              <label for="exampleInputEmail1">Job description</label>
-              <app-job-editor></app-job-editor>
+              <label for="jobDescription">Job description</label>
+              <app-job-editor id="jobDescription"></app-job-editor>
             </div>
           </div>
         </div>

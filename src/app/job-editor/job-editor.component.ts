@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
@@ -7,6 +7,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrls: ['./job-editor.component.css']
 })
 export class JobEditorComponent implements OnInit {
+  @Input() id: string;
+
   public Editor = ClassicEditor;
 
   constructor() {}

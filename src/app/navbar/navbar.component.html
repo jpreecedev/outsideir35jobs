@@ -34,37 +34,10 @@
       </button>
 
       <!-- Navigation -->
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto mr-auto">
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="jobs"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Jobs
-          </a>
-          <!-- / .row -->
-        </li>
-        <li class="nav-item">
-          <a
-            *ngIf="!authService.isLoggedIn()"
-            class="nav-link"
-            routerLink="auth"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Log In / Sign Up
-          </a>
-          <a
-            *ngIf="authService.isLoggedIn()"
-            class="nav-link"
-            routerLink="/"
-            (click)="authService.logout()"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Log Out
+          <a class="nav-link" routerLink="jobs">
+            See all available jobs
           </a>
           <!-- / .row -->
         </li>

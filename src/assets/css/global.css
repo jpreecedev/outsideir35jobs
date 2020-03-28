@@ -14,3 +14,7 @@ body {
   background-size: cover;
   background-position-y: -200px;
 }
+
+.form-group.large {
+  margin-bottom: 2rem;
+}

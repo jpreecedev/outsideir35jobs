@@ -1,0 +1,50 @@
+import {
+  Component,
+  ViewChild,
+  EventEmitter,
+  Output,
+  OnInit,
+  AfterViewInit,
+  Input
+} from '@angular/core';
+
+@Component({
+  selector: 'app-places',
+  templateUrl: './places.component.html',
+  styleUrls: ['./places.component.css']
+})
+export class PlacesComponent implements OnInit, AfterViewInit {
+  @Input() adressType: string;
+  @Output() setAddress: EventEmitter<any> = new EventEmitter();
+  @ViewChild('addresstext') addresstext: any;
+
+  autocompleteInput: string;
+  queryWait: boolean;
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.getPlaceAutocomplete();
+  }
+
+  private getPlaceAutocomplete() {
+    // @ts-ignore
+    const autocomplete = new google.maps.places.Autocomplete(
+      this.addresstext.nativeElement,
+      {
+        types: [this.adressType]
+      }
+    );
+    // @ts-ignore
+    google.maps.event.addListener(autocomplete, 'place_changed', () => {
+      const place = autocomplete.getPlace();
+      this.invokeEvent(place);
+    });
+  }
+
+  invokeEvent(place: Object) {
+    this.setAddress.emit(place);
+  }
+}

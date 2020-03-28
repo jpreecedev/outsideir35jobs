@@ -1,1 +1,172 @@
-<section></section>
+<section class="pt-5 pt-md-11">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>Post a job</h1>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-12 col-md">
+        <div class="card mb-5">
+          <div class="card-body">
+            <h3 class="card-title text-body">Overview</h3>
+            <form>
+              <div class="form-group large">
+                <label for="exampleInputEmail1">Job title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  placeholder="Enter email"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="form-group large">
+                <label for="name">Skills</label>
+                <angular2-multiselect
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)"
+                  (onDeSelect)="OnItemDeSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                  (onDeSelectAll)="onDeSelectAll($event)"
+                  name="skills"
+                ></angular2-multiselect>
+              </div>
+              <div class="form-group large">
+                <label for="name">Job is...</label>
+                <div>
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary-soft active">
+                      <input
+                        type="radio"
+                        name="options"
+                        id="option1"
+                        autocomplete="off"
+                        checked
+                      />
+                      Remote
+                    </label>
+                    <label class="btn btn-secondary-soft">
+                      <input
+                        type="radio"
+                        name="options"
+                        id="option2"
+                        autocomplete="off"
+                      />
+                      On site
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group large">
+                <label for="exampleInputEmail1"
+                  >Head office location (if applicable)</label
+                >
+                <app-places
+                  (setAddress)="getEstablishmentAddress($event)"
+                  adressType="establishment"
+                ></app-places>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card mt-5">
+          <div class="card-body">
+            <h3 class="card-title text-body">Rate</h3>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="form-group large">
+                  <label for="exampleInputEmail1">From (min)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter email"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-group large">
+                  <label for="exampleInputEmail1">To (max)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter email"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="form-group large">
+                  <label for="exampleInputEmail1">Per</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter email"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-group large">
+                  <label for="exampleInputEmail1">Currency</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter email"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-5">
+          <div class="card-body">
+            <h3 class="card-title text-body">Contract details</h3>
+            <div class="form-group large">
+              <label for="exampleInputEmail1">Length</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                placeholder="Enter email"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-group large">
+              <label for="exampleInputEmail1">Company name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                placeholder="Enter email"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary mr-1">
+                Post job
+              </button>
+              <button type="reset" class="btn btn-default">
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

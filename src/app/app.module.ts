@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,7 @@ import { LandingComponent } from './landing/landing.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { PostAJobComponent } from './post-a-job/post-a-job.component';
 import { JobComponent } from './job/job.component';
+import { PlacesComponent } from './places/places.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,16 @@ import { JobComponent } from './job/job.component';
     LandingComponent,
     JobsComponent,
     PostAJobComponent,
-    JobComponent
+    JobComponent,
+    PlacesComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, IconsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    IconsModule,
+    AngularMultiSelectModule,
+    FormsModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

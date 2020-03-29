@@ -13,7 +13,7 @@ interface PostAJobForm {
   companyName: string;
   jobDescription: string;
   whereToApply: string;
-  experienceRequired: string;
+  experienceRequired: ExperienceRequired;
 }
 
 type ExperienceRequired =

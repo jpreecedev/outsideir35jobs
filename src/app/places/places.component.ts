@@ -32,14 +32,16 @@ export class PlacesComponent implements OnInit, AfterViewInit {
   }
 
   private getPlaceAutocomplete() {
-    // @ts-ignore
+    if (!google) {
+      return;
+    }
+
     const autocomplete = new google.maps.places.Autocomplete(
       this.addresstext.nativeElement,
       {
         types: [this.addressType]
       }
     );
-    // @ts-ignore
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       const place = autocomplete.getPlace();
       this.invokeEvent(place);

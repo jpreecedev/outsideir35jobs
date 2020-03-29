@@ -1,3 +1,5 @@
+declare const google: any;
+
 interface PostAJobForm {
   id?: string;
   jobTitle: string;

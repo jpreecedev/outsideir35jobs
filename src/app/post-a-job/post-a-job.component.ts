@@ -62,7 +62,7 @@ export class PostAJobComponent implements OnInit, PostAJobForm {
 
   postJob(form: NgForm) {
     if (!form.valid) {
-      return;
+      return Promise.reject();
     }
 
     const formData = {
@@ -71,7 +71,7 @@ export class PostAJobComponent implements OnInit, PostAJobForm {
       headOfficeLocation: this.headOfficeLocation
     };
 
-    this.jobsService
+    return this.jobsService
       .saveJob(formData)
       .then(() => {
         this.toastr.success('We have received your post', 'Job Post');

@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +21,6 @@ import { JobsComponent } from './jobs/jobs.component';
 import { PostAJobComponent } from './post-a-job/post-a-job.component';
 import { JobComponent } from './job/job.component';
 import { PlacesComponent } from './places/places.component';
-import { JobEditorComponent } from './job-editor/job-editor.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 
 @NgModule({
@@ -31,7 +35,6 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     PostAJobComponent,
     JobComponent,
     PlacesComponent,
-    JobEditorComponent,
     ThankYouComponent
   ],
   imports: [
@@ -40,7 +43,10 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     IconsModule,
     AngularMultiSelectModule,
     FormsModule,
-    CKEditorModule
+    CKEditorModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule
   ],
   bootstrap: [AppComponent]
 })

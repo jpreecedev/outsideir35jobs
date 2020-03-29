@@ -45,22 +45,42 @@
 
             <!-- Badge -->
             <span class="badge badge-rounded-circle badge-primary-soft">
-              <span>1</span>
+              <span>{{ frontEndJobs.length }}</span>
             </span>
 
             <!-- List group -->
             <div>
               <div class="list-group list-group-flush">
                 <a
-                  class="list-group-item text-reset text-decoration-none"
-                  href="#!"
+                  *ngFor="let job of frontEndJobs.slice(0, 10)"
+                  class="list-group-item text-reset text-decoration-none cursor-pointer"
+                  [routerLink]="['/job', job.id]"
                 >
-                  <p class="font-weight-bold mb-1">
-                    Senior Visual Designer
-                  </p>
-                  <p class="font-size-sm text-muted mb-0">
-                    5+ years experience · San Francisco
-                  </p>
+                  <span class="font-weight-bold mb-1 d-block">
+                    {{ job.jobTitle }}
+                  </span>
+                  <span
+                    class="font-size-sm text-muted mb-0 d-block"
+                    [ngSwitch]="job.experienceRequired"
+                  >
+                    <span *ngSwitchCase="'OneYearOrLess'"
+                      >&lt; 1 year experience</span
+                    >
+                    <span *ngSwitchCase="'OneToTwo'">1-2 years experience</span>
+                    <span *ngSwitchCase="'TwoToThree'"
+                      >2-3 years experience</span
+                    >
+                    <span *ngSwitchCase="'ThreeToFive'"
+                      >3-5 years experience</span
+                    >
+                    <span *ngSwitchCase="'FivePlus'">5+ years experience</span>
+                    <span *ngSwitchCase="'TenPlus'">10+ years experience</span>
+                  </span>
+                  <span
+                    class="font-size-sm text-muted mb-0 d-block"
+                    *ngIf="job.headOfficeLocation"
+                    >{{ job.headOfficeLocation }}</span
+                  >
                 </a>
               </div>
             </div>
@@ -82,22 +102,42 @@
 
             <!-- Badge -->
             <span class="badge badge-rounded-circle badge-success-soft">
-              <span>1</span>
+              <span>{{ fullStackJobs.length }}</span>
             </span>
 
             <!-- List group -->
             <div>
               <div class="list-group list-group-flush">
                 <a
-                  class="list-group-item text-reset text-decoration-none"
-                  href="#!"
+                  *ngFor="let job of fullStackJobs.slice(0, 10)"
+                  class="list-group-item text-reset text-decoration-none cursor-pointer"
+                  [routerLink]="['/job', job.id]"
                 >
-                  <p class="font-weight-bold mb-1">
-                    Project Manager
-                  </p>
-                  <p class="font-size-sm text-muted mb-0">
-                    3+ years experience · London
-                  </p>
+                  <span class="font-weight-bold mb-1 d-block">
+                    {{ job.jobTitle }}
+                  </span>
+                  <span
+                    class="font-size-sm text-muted mb-0 d-block"
+                    [ngSwitch]="job.experienceRequired"
+                  >
+                    <span *ngSwitchCase="'OneYearOrLess'"
+                      >&lt; 1 year experience</span
+                    >
+                    <span *ngSwitchCase="'OneToTwo'">1-2 years experience</span>
+                    <span *ngSwitchCase="'TwoToThree'"
+                      >2-3 years experience</span
+                    >
+                    <span *ngSwitchCase="'ThreeToFive'"
+                      >3-5 years experience</span
+                    >
+                    <span *ngSwitchCase="'FivePlus'">5+ years experience</span>
+                    <span *ngSwitchCase="'TenPlus'">10+ years experience</span>
+                  </span>
+                  <span
+                    class="font-size-sm text-muted mb-0 d-block"
+                    *ngIf="job.headOfficeLocation"
+                    >{{ job.headOfficeLocation }}</span
+                  >
                 </a>
               </div>
             </div>

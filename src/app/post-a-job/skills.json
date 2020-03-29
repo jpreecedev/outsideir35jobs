@@ -10,10 +10,11 @@
   { "id": 9, "itemName": "HTML5", "display": "HTML5" },
   { "id": 10, "itemName": "Java", "display": "Java" },
   { "id": 11, "itemName": "JavaScript", "display": "JavaScript" },
-  { "id": 12, "itemName": "React", "display": "React" },
-  { "id": 13, "itemName": "Sketch", "display": "Sketch" },
-  { "id": 14, "itemName": "Svelte", "display": "Svelte" },
-  { "id": 15, "itemName": "UX", "display": "UX" },
-  { "id": 16, "itemName": "Vue", "display": "Vue.js" },
-  { "id": 217, "itemName": "Webpack", "display": "Webpack" }
+  { "id": 12, "itemName": "Node", "display": "Node" },
+  { "id": 13, "itemName": "React", "display": "React" },
+  { "id": 14, "itemName": "Sketch", "display": "Sketch" },
+  { "id": 15, "itemName": "Svelte", "display": "Svelte" },
+  { "id": 16, "itemName": "UX", "display": "UX" },
+  { "id": 17, "itemName": "Vue", "display": "Vue.js" },
+  { "id": 18, "itemName": "Webpack", "display": "Webpack" }
 ]

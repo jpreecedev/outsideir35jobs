@@ -1,16 +1,17 @@
 <section class="pt-5 pt-md-11">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>Post a job</h1>
+  <!-- Form ends -->
+  <form #postJobForm="ngForm" (ngSubmit)="postJob(postJobForm)">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Post a job</h1>
+        </div>
       </div>
-    </div>
-    <div class="row align-items-center">
-      <div class="col-12 col-md">
-        <div class="card mb-5">
-          <div class="card-body">
-            <h3 class="card-title text-body">Overview</h3>
-            <form>
+      <div class="row align-items-center">
+        <div class="col-12 col-md">
+          <div class="card mb-5">
+            <div class="card-body">
+              <h3 class="card-title text-body">Overview</h3>
               <div class="form-group large">
                 <label for="jobTitle">Job title</label>
                 <input
@@ -19,40 +20,70 @@
                   id="jobTitle"
                   name="jobTitle"
                   placeholder="Job title"
+                  [(ngModel)]="jobTitle"
                 />
               </div>
               <div class="form-group large">
                 <label for="category">Category</label>
-                <select class="custom-select" id="category" name="category">
+                <select
+                  class="custom-select"
+                  id="category"
+                  name="category"
+                  [(ngModel)]="category"
+                >
                   <option selected value="FrontEnd">Front-end</option>
                   <option value="FullStack">Full stack</option>
+                </select>
+              </div>
+              <div class="form-group large">
+                <label for="experienceRequired">Experience Required</label>
+                <select
+                  class="custom-select"
+                  id="experienceRequired"
+                  name="experienceRequired"
+                  [(ngModel)]="experienceRequired"
+                >
+                  <option selected value="OneYearOrLess">1 year or less</option>
+                  <option value="OneToTwo">1-2 years</option>
+                  <option value="TwoToThree">2-3 years</option>
+                  <option value="ThreeToFive">3-5 years</option>
+                  <option value="FivePlus">5+ years</option>
+                  <option value="TenPlus">10+ years</option>
                 </select>
               </div>
               <div class="form-group large">
                 <label for="skills">Skills</label>
                 <angular2-multiselect
                   [data]="dropdownList"
-                  [(ngModel)]="selectedItems"
+                  [(ngModel)]="selectedSkills"
                   [settings]="dropdownSettings"
-                  (onSelect)="onItemSelect($event)"
-                  (onDeSelect)="OnItemDeSelect($event)"
-                  (onSelectAll)="onSelectAll($event)"
-                  (onDeSelectAll)="onDeSelectAll($event)"
                   name="skills"
                 ></angular2-multiselect>
               </div>
               <div class="form-group large">
                 <label for="jobis">Job is...</label>
                 <div>
-                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                      <input type="radio" name="options" id="remote" checked />
+                  <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic example"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      [class.active]="jobIs === 'remote'"
+                      (click)="jobIs = 'remote'"
+                    >
                       Remote
-                    </label>
-                    <label class="btn btn-primary">
-                      <input type="radio" name="options" id="permanent" />
-                      On site
-                    </label>
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      [class.active]="jobIs === 'onSite'"
+                      (click)="jobIs = 'onSite'"
+                    >
+                      On Site
+                    </button>
                   </div>
                 </div>
               </div>
@@ -63,121 +94,151 @@
                 <app-places
                   id="establishment"
                   name="establishment"
-                  (setAddress)="getEstablishmentAddress($event)"
+                  (setAddress)="setEstablishmentAddress($event)"
                   adressType="establishment"
                 ></app-places>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-        <div class="card mb-5">
-          <div class="card-body">
-            <h3 class="card-title text-body">Rate</h3>
+          <div class="card mb-5">
+            <div class="card-body">
+              <h3 class="card-title text-body">Rate</h3>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="form-group large">
+                    <label for="rateFrom">From (min)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="rateFrom"
+                      name="rateFrom"
+                      placeholder="From (min)"
+                      [(ngModel)]="rateFrom"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group large">
+                    <label for="rateTo">To (max)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="rateTo"
+                      name="rateTo"
+                      placeholder="To (max)"
+                      [(ngModel)]="rateTo"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="form-group large">
+                    <label for="frequency">Frequency</label>
+                    <select
+                      class="custom-select"
+                      id="frequency"
+                      name="frequency"
+                      [(ngModel)]="frequency"
+                    >
+                      <option selected value="Day">Day</option>
+                      <option value="Hour">Hour</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group large">
+                    <label for="currency">Currency</label>
+                    <select
+                      class="custom-select"
+                      id="currency"
+                      name="currency"
+                      [(ngModel)]="currency"
+                    >
+                      <option selected value="GBP">GBP (&pound;)</option>
+                      <option value="USD">USD (&#x24;)</option>
+                      <option value="EUR">EUR (&euro;)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-5">
+            <div class="card-body">
+              <h3 class="card-title text-body">Contract details</h3>
+              <div class="form-group large">
+                <label for="contractLength">Length</label>
+                <select
+                  class="custom-select"
+                  id="contractLength"
+                  name="contractLength"
+                  [(ngModel)]="contractLength"
+                >
+                  <option selected value="Under1Month">Under 1 month</option>
+                  <option value="OneToThree">1-3 months</option>
+                  <option value="ThreeToSix">3-6 months</option>
+                  <option value="SixToTwelve">6-12 months</option>
+                  <option value="TwelvePlus">12+ months</option>
+                </select>
+              </div>
+              <div class="form-group large">
+                <label for="companyName">Company name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="companyName"
+                  name="companyName"
+                  placeholder="Company name"
+                  [(ngModel)]="companyName"
+                />
+              </div>
+              <div class="form-group large">
+                <label for="jobDescription">Job description</label>
+                <ckeditor
+                  id="jobDescription"
+                  name="jobDescription"
+                  [editor]="Editor"
+                  [(ngModel)]="jobDescription"
+                  [config]="{
+                    toolbar: [
+                      'heading',
+                      '|',
+                      'bold',
+                      'italic',
+                      'bulletedList',
+                      'numberedList'
+                    ]
+                  }"
+                ></ckeditor>
+              </div>
+              <div class="form-group large">
+                <label for="whereToApply">Where to apply</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="whereToApply"
+                  name="whereToApply"
+                  placeholder="https://yoursite.com/job/123/apply"
+                  [(ngModel)]="whereToApply"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="container">
             <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="form-group large">
-                  <label for="rateFrom">From (min)</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="rateFrom"
-                    name="rateFrom"
-                    placeholder="From (min)"
-                  />
-                </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary mr-1">
+                  Post job
+                </button>
+                <button type="reset" class="btn btn-default">
+                  Reset
+                </button>
               </div>
-              <div class="col-12 col-md-6">
-                <div class="form-group large">
-                  <label for="rateTo">To (max)</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="rateTo"
-                    name="rateTo"
-                    placeholder="To (max)"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="form-group large">
-                  <label for="frequency">Frequency</label>
-                  <select class="custom-select" id="frequency" name="frequency">
-                    <option selected value="Day">Day</option>
-                    <option value="Hour">Hour</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="form-group large">
-                  <label for="currency">Currency</label>
-                  <select class="custom-select" id="currency" name="currency">
-                    <option selected value="Day">GBP (&pound;)</option>
-                    <option value="Hour">USD (&#x24;)</option>
-                    <option value="Hour">EUR (&euro;)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-5">
-          <div class="card-body">
-            <h3 class="card-title text-body">Contract details</h3>
-            <div class="form-group large">
-              <label for="contractLength">Length</label>
-              <select
-                class="custom-select"
-                id="contractLength"
-                name="contractLength"
-              >
-                <option selected value="Under1Month">Under 1 month</option>
-                <option value="OneToThree">1-3 months</option>
-                <option value="ThreeToSix">3-6 months</option>
-                <option value="SixToTwelve">6-12 months</option>
-                <option value="TwelvePlus">12+ months</option>
-              </select>
-            </div>
-            <div class="form-group large">
-              <label for="companyName">Company name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="companyName"
-                name="companyName"
-                placeholder="Company name"
-              />
-            </div>
-            <div class="form-group large">
-              <label for="jobDescription">Job description</label>
-              <app-job-editor id="jobDescription"></app-job-editor>
-            </div>
-            <div class="form-group large">
-              <label for="whereToApply">Where to apply</label>
-              <input
-                type="text"
-                class="form-control"
-                id="whereToApply"
-                name="whereToApply"
-                placeholder="https://yoursite.com/job/123/apply"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary mr-1">
-                Post job
-              </button>
-              <button type="reset" class="btn btn-default">
-                Reset
-              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </section>

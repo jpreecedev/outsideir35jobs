@@ -19,7 +19,8 @@ export class PostAJobComponent implements OnInit, PostAJobForm {
   jobTitle: string = '';
   category: Category = 'FrontEnd';
   headOfficeLocation: string = '';
-  selectedSkills = [];
+  selectedSkills: Skill[] = [];
+  skills: Skill[] = [];
   rateFrom: string = '500';
   rateTo: string = '550';
   jobIs: JobIs = 'remote';

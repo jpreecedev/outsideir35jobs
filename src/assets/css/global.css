@@ -45,3 +45,7 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.list-slim {
+  padding-inline-start: 20px;
+}

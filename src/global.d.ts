@@ -1,20 +1,20 @@
-type PostAJobForm = {
+interface PostAJobForm {
   id?: string;
   jobTitle: string;
   category: 'FrontEnd' | 'FullStack';
   headOfficeLocation: string;
-  selectedSkills: any[];
+  skills: Skill[];
   rateFrom: string;
   rateTo: string;
-  jobIs: string;
-  frequency: string;
-  currency: string;
-  contractLength: string;
+  jobIs: JobIs;
+  frequency: Frequency;
+  currency: Currency;
+  contractLength: ContractLength;
   companyName: string;
   jobDescription: string;
   whereToApply: string;
   experienceRequired: string;
-};
+}
 
 type ExperienceRequired =
   | 'OneYearOrLess'
@@ -38,3 +38,9 @@ type ContractLength =
   | 'ThreeToSix'
   | 'SixToTwelve'
   | 'TwelvePlus';
+
+type Skill = {
+  id: number;
+  itemName: string;
+  display: string;
+};

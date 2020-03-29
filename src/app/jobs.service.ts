@@ -12,6 +12,10 @@ export class JobsService {
     return this.firestore.collection<PostAJobForm>('jobs').add(job);
   }
 
+  getJob(id: string) {
+    return this.firestore.doc<PostAJobForm>(`jobs/${id}`).valueChanges();
+  }
+
   getAllJobs() {
     return this.firestore
       .collection<PostAJobForm>('jobs')

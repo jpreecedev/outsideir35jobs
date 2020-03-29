@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import * as skills from './skills.json';
 import { JobsService } from '../jobs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-a-job',
@@ -32,7 +34,11 @@ export class PostAJobComponent implements OnInit, PostAJobForm {
   whereToApply: string = '';
   experienceRequired: ExperienceRequired = 'ThreeToFive';
 
-  constructor(private jobsService: JobsService) {}
+  constructor(
+    private jobsService: JobsService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.dropdownList = (skills as any).default;
@@ -65,6 +71,18 @@ export class PostAJobComponent implements OnInit, PostAJobForm {
       headOfficeLocation: this.headOfficeLocation
     };
 
-    this.jobsService.saveJob(formData);
+    this.jobsService
+      .saveJob(formData)
+      .then(() => {
+        this.toastr.success('We have received your post', 'Job Post');
+        this.router.navigate(['/thank-you']);
+      })
+      .catch(error => {
+        this.toastr.error(
+          'There was an error submitting your post.  Please try again.',
+          'Job Post'
+        );
+        console.error(error);
+      });
   }
 }

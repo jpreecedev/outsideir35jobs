@@ -34,7 +34,9 @@
       <div class="col-auto">
         <!-- Badge -->
         <span class="badge badge-pill badge-success-soft">
-          <span class="h6 text-uppercase">4 openings</span>
+          <span class="h6 text-uppercase"
+            >{{ frontEndJobs.length }} openings</span
+          >
         </span>
       </div>
     </div>
@@ -53,33 +55,76 @@
                 </th>
                 <th>
                   <span class="h6 text-uppercase font-weight-bold">
+                    Rate
+                  </span>
+                </th>
+                <th>
+                  <span class="h6 text-uppercase font-weight-bold">
                     Location
                   </span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let job of frontEndJobs">
                 <td>
                   <a
-                    [routerLink]="['/job', 1]"
+                    [routerLink]="['/job', job.id]"
                     class="text-reset text-decoration-none"
                   >
                     <p class="mb-1">
-                      Senior UX Designer
+                      {{ job.jobTitle }}
                     </p>
                     <p class="font-size-sm text-muted mb-0">
-                      Responsible for design systems and brand management.
+                      <span
+                        class="font-size-sm text-muted mb-0 d-block"
+                        [ngSwitch]="job.experienceRequired"
+                      >
+                        <span *ngSwitchCase="'OneYearOrLess'"
+                          >&lt; 1 year experience</span
+                        >
+                        <span *ngSwitchCase="'OneToTwo'"
+                          >1-2 years experience</span
+                        >
+                        <span *ngSwitchCase="'TwoToThree'"
+                          >2-3 years experience</span
+                        >
+                        <span *ngSwitchCase="'ThreeToFive'"
+                          >3-5 years experience</span
+                        >
+                        <span *ngSwitchCase="'FivePlus'"
+                          >5+ years experience</span
+                        >
+                        <span *ngSwitchCase="'TenPlus'"
+                          >10+ years experience</span
+                        >
+                      </span>
                     </p>
                   </a>
                 </td>
                 <td>
                   <a
-                    [routerLink]="['/job', 1]"
+                    [routerLink]="['/job', job.id]"
+                    class="text-reset text-decoration-none"
+                  >
+                    <p class="mb-1">
+                      {{ job.rateFrom | currency: job.currency }} per
+                      {{ job.frequency }}
+                    </p>
+                  </a>
+                </td>
+                <td>
+                  <a
+                    [routerLink]="['/job', job.id]"
                     class="text-reset text-decoration-none"
                   >
                     <p class="font-size-sm mb-0">
-                      Los Angeles
+                      <span [ngSwitch]="job.jobIs">
+                        <span *ngSwitchCase="'remote'">Fully remote</span>
+                        <span *ngSwitchCase="'onSite'">{{
+                          job.headOfficeLocation || "On Site (Unspecified)"
+                        }}</span>
+                      </span>
                     </p>
                   </a>
                 </td>
@@ -99,13 +144,15 @@
 
         <!-- Text -->
         <p class="font-size-sm text-muted mb-0">
-          Roles that require a broader skillset.
+          Roles that have a preference for a broad range of skills.
         </p>
       </div>
       <div class="col-auto">
         <!-- Badge -->
         <span class="badge badge-pill badge-success-soft">
-          <span class="h6 text-uppercase">4 openings</span>
+          <span class="h6 text-uppercase"
+            >{{ fullStackJobs.length }} openings</span
+          >
         </span>
       </div>
     </div>
@@ -124,33 +171,76 @@
                 </th>
                 <th>
                   <span class="h6 text-uppercase font-weight-bold">
+                    Rate
+                  </span>
+                </th>
+                <th>
+                  <span class="h6 text-uppercase font-weight-bold">
                     Location
                   </span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let job of fullStackJobs">
                 <td>
                   <a
-                    [routerLink]="['/job', 1]"
+                    [routerLink]="['/job', job.id]"
                     class="text-reset text-decoration-none"
                   >
                     <p class="mb-1">
-                      Senior UX Designer
+                      {{ job.jobTitle }}
                     </p>
                     <p class="font-size-sm text-muted mb-0">
-                      Responsible for design systems and brand management.
+                      <span
+                        class="font-size-sm text-muted mb-0 d-block"
+                        [ngSwitch]="job.experienceRequired"
+                      >
+                        <span *ngSwitchCase="'OneYearOrLess'"
+                          >&lt; 1 year experience</span
+                        >
+                        <span *ngSwitchCase="'OneToTwo'"
+                          >1-2 years experience</span
+                        >
+                        <span *ngSwitchCase="'TwoToThree'"
+                          >2-3 years experience</span
+                        >
+                        <span *ngSwitchCase="'ThreeToFive'"
+                          >3-5 years experience</span
+                        >
+                        <span *ngSwitchCase="'FivePlus'"
+                          >5+ years experience</span
+                        >
+                        <span *ngSwitchCase="'TenPlus'"
+                          >10+ years experience</span
+                        >
+                      </span>
                     </p>
                   </a>
                 </td>
                 <td>
                   <a
-                    [routerLink]="['/job', 1]"
+                    [routerLink]="['/job', job.id]"
+                    class="text-reset text-decoration-none"
+                  >
+                    <p class="mb-1">
+                      {{ job.rateFrom | currency: job.currency }} per
+                      {{ job.frequency }}
+                    </p>
+                  </a>
+                </td>
+                <td>
+                  <a
+                    [routerLink]="['/job', job.id]"
                     class="text-reset text-decoration-none"
                   >
                     <p class="font-size-sm mb-0">
-                      Los Angeles
+                      <span [ngSwitch]="job.jobIs">
+                        <span *ngSwitchCase="'remote'">Fully remote</span>
+                        <span *ngSwitchCase="'onSite'">{{
+                          job.headOfficeLocation || "On Site (Unspecified)"
+                        }}</span>
+                      </span>
                     </p>
                   </a>
                 </td>

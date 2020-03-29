@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "release": "semantic-release --no-ci",
-    "deploy:s3": "s3-deploy './dist/outsideir35jobs' --cwd './build/' --bucket outsideir35jobs.io  --deleteRemoved --gzip"
+    "deploy:s3": "s3-deploy './dist/outsideir35jobs/**' --cwd './dist/outsideir35jobs/' --bucket outsideir35jobs.io  --deleteRemoved --gzip"
   },
   "private": true,
   "dependencies": {
@@ -59,6 +59,7 @@
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "protractor": "~5.4.3",
+    "s3-deploy": "^1.4.0",
     "semantic-release": "^17.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
@@ -71,7 +72,7 @@
       [
         "@semantic-release/exec",
         {
-          "verifyConditionsCmd": "npm test --watchAll=false && npm run build",
+          "verifyConditionsCmd": "npm test -- --watch=false --browsers=ChromeHeadless && npm run build",
           "publishCmd": "npm run deploy:s3"
         }
       ]

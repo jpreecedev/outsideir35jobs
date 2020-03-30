@@ -28,7 +28,7 @@ type ExperienceRequired =
 
 type Category = 'FrontEnd' | 'FullStack';
 
-type JobIs = 'remote' | 'onSite';
+type JobIs = 'remote' | 'onSite' | 'both';
 
 type Frequency = 'Day' | 'Hour';
 

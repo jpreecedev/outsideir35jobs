@@ -119,6 +119,14 @@
                     >
                       On Site
                     </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      [class.active]="model.jobIs === 'both'"
+                      (click)="model.jobIs = 'both'"
+                    >
+                      Remote &amp; On Site
+                    </button>
                   </div>
                 </div>
               </div>

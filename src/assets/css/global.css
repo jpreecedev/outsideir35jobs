@@ -42,10 +42,26 @@ body {
   display: none;
 }
 
+.was-validated .custom-multiselect.ng-invalid .c-btn {
+  border-color: #df4759;
+}
+
+.was-validated .custom-multiselect.ng-valid .c-btn {
+  border-color: #42ba96;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
 
 .list-slim {
   padding-inline-start: 20px;
+}
+
+.was-validated ckeditor.ng-invalid .ck.ck-editor {
+  border: 1px solid #df4759;
+}
+
+.was-validated ckeditor.ng-valid .ck.ck-editor {
+  border: 1px solid #42ba96;
 }

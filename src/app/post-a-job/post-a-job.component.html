@@ -1,6 +1,14 @@
 <section class="pt-5 pt-md-11">
   <!-- Form ends -->
-  <form #postJobForm="ngForm" (ngSubmit)="postJob(postJobForm)">
+  <form
+    #postJobForm="ngForm"
+    (ngSubmit)="postJob(postJobForm)"
+    class="needs-validation was-validated"
+    [ngClass]="{
+      'needs-validation': !postJobForm.valid,
+      'was-validated': postJobForm.submitted
+    }"
+  >
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -19,9 +27,24 @@
                   class="form-control"
                   id="jobTitle"
                   name="jobTitle"
+                  #jobTitleField="ngModel"
                   placeholder="Job title"
-                  [(ngModel)]="jobTitle"
+                  [(ngModel)]="model.jobTitle"
+                  minlength="3"
+                  required
                 />
+                <div
+                  *ngIf="jobTitleField?.errors?.required"
+                  class="invalid-feedback"
+                >
+                  Job title is required
+                </div>
+                <div
+                  *ngIf="jobTitleField?.errors?.minlength"
+                  class="invalid-feedback"
+                >
+                  Job title must be at least 3 characters long.
+                </div>
               </div>
               <div class="form-group large">
                 <label for="category">Category</label>
@@ -29,7 +52,8 @@
                   class="custom-select"
                   id="category"
                   name="category"
-                  [(ngModel)]="category"
+                  [(ngModel)]="model.category"
+                  required
                 >
                   <option selected value="FrontEnd">Front-end</option>
                   <option value="FullStack">Full stack</option>
@@ -41,7 +65,8 @@
                   class="custom-select"
                   id="experienceRequired"
                   name="experienceRequired"
-                  [(ngModel)]="experienceRequired"
+                  [(ngModel)]="model.experienceRequired"
+                  required
                 >
                   <option selected value="OneYearOrLess">1 year or less</option>
                   <option value="OneToTwo">1-2 years</option>
@@ -55,10 +80,20 @@
                 <label for="skills">Skills</label>
                 <angular2-multiselect
                   [data]="dropdownList"
-                  [(ngModel)]="selectedSkills"
+                  [(ngModel)]="model.skills"
                   [settings]="dropdownSettings"
                   name="skills"
+                  #skillsField="ngModel"
+                  required
                 ></angular2-multiselect>
+                <div
+                  *ngIf="
+                    postJobForm.submitted && skillsField.hasError('required')
+                  "
+                  class="invalid-feedback d-block"
+                >
+                  At least one skill is required
+                </div>
               </div>
               <div class="form-group large">
                 <label for="jobis">Job is...</label>
@@ -71,16 +106,16 @@
                     <button
                       type="button"
                       class="btn btn-primary"
-                      [class.active]="jobIs === 'remote'"
-                      (click)="jobIs = 'remote'"
+                      [class.active]="model.jobIs === 'remote'"
+                      (click)="model.jobIs = 'remote'"
                     >
                       Remote
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary"
-                      [class.active]="jobIs === 'onSite'"
-                      (click)="jobIs = 'onSite'"
+                      [class.active]="model.jobIs === 'onSite'"
+                      (click)="model.jobIs = 'onSite'"
                     >
                       On Site
                     </button>
@@ -112,9 +147,17 @@
                       class="form-control"
                       id="rateFrom"
                       name="rateFrom"
+                      #rateFromField="ngModel"
                       placeholder="From (min)"
-                      [(ngModel)]="rateFrom"
+                      [(ngModel)]="model.rateFrom"
+                      required
                     />
+                    <div
+                      *ngIf="rateFromField?.errors?.required"
+                      class="invalid-feedback"
+                    >
+                      Rate from is required
+                    </div>
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -125,9 +168,17 @@
                       class="form-control"
                       id="rateTo"
                       name="rateTo"
+                      #rateToField="ngModel"
                       placeholder="To (max)"
-                      [(ngModel)]="rateTo"
+                      [(ngModel)]="model.rateTo"
+                      required
                     />
+                    <div
+                      *ngIf="rateToField?.errors?.required"
+                      class="invalid-feedback"
+                    >
+                      Rate to is required
+                    </div>
                   </div>
                 </div>
               </div>
@@ -139,7 +190,8 @@
                       class="custom-select"
                       id="frequency"
                       name="frequency"
-                      [(ngModel)]="frequency"
+                      [(ngModel)]="model.frequency"
+                      requierd
                     >
                       <option selected value="Day">Day</option>
                       <option value="Hour">Hour</option>
@@ -153,7 +205,8 @@
                       class="custom-select"
                       id="currency"
                       name="currency"
-                      [(ngModel)]="currency"
+                      [(ngModel)]="model.currency"
+                      required
                     >
                       <option selected value="GBP">GBP (&pound;)</option>
                       <option value="USD">USD (&#x24;)</option>
@@ -173,7 +226,8 @@
                   class="custom-select"
                   id="contractLength"
                   name="contractLength"
-                  [(ngModel)]="contractLength"
+                  [(ngModel)]="model.contractLength"
+                  required
                 >
                   <option selected value="Under1Month">Under 1 month</option>
                   <option value="OneToThree">1-3 months</option>
@@ -189,17 +243,34 @@
                   class="form-control"
                   id="companyName"
                   name="companyName"
+                  #companyNameField="ngModel"
                   placeholder="Company name"
-                  [(ngModel)]="companyName"
+                  [(ngModel)]="model.companyName"
+                  minlength="2"
+                  required
                 />
+                <div
+                  *ngIf="companyNameField?.errors?.required"
+                  class="invalid-feedback"
+                >
+                  Company name is required
+                </div>
+                <div
+                  *ngIf="companyNameField?.errors?.minlength"
+                  class="invalid-feedback"
+                >
+                  Company name must be at least 2 characters long.
+                </div>
               </div>
               <div class="form-group large">
                 <label for="jobDescription">Job description</label>
                 <ckeditor
                   id="jobDescription"
                   name="jobDescription"
+                  required
+                  #ckEditorField="ngModel"
                   [editor]="Editor"
-                  [(ngModel)]="jobDescription"
+                  [(ngModel)]="model.jobDescription"
                   [config]="{
                     toolbar: [
                       'heading',
@@ -211,6 +282,14 @@
                     ]
                   }"
                 ></ckeditor>
+                <div
+                  *ngIf="
+                    postJobForm.submitted && ckEditorField?.errors?.required
+                  "
+                  class="invalid-feedback d-block"
+                >
+                  Job description is required.
+                </div>
               </div>
               <div class="form-group large">
                 <label for="whereToApply">Where to apply</label>
@@ -219,9 +298,24 @@
                   class="form-control"
                   id="whereToApply"
                   name="whereToApply"
+                  #whereToApplyField="ngModel"
                   placeholder="https://yoursite.com/job/123/apply"
-                  [(ngModel)]="whereToApply"
+                  [(ngModel)]="model.whereToApply"
+                  minlength="3"
+                  required
                 />
+                <div
+                  *ngIf="jobTitleField?.errors?.required"
+                  class="invalid-feedback"
+                >
+                  Where to apply is required
+                </div>
+                <div
+                  *ngIf="jobTitleField?.errors?.minlength"
+                  class="invalid-feedback"
+                >
+                  Where to apply must be at least 3 characters long.
+                </div>
               </div>
             </div>
           </div>

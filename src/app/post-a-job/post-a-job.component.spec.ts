@@ -66,8 +66,8 @@ describe('PostAJobComponent', () => {
       currency: 'EUR',
       experienceRequired: 'FivePlus',
       frequency: 'Day',
-      headOfficeLocation: '',
-      jobIs: 'remote',
+      headOfficeLocation: 'TEST LOCATION',
+      jobIs: 'onSite',
       jobDescription: 'new-jobdescription',
       jobTitle: 'new-jobtitle',
       rateFrom: 'new-ratefrom',
@@ -80,9 +80,6 @@ describe('PostAJobComponent', () => {
       whereToApply: 'new-wheretoapply'
     };
 
-    component.jobIs = 'onSite';
-    component.headOfficeLocation = 'TEST LOCATION';
-
     component
       .postJob({
         valid: true,
@@ -94,11 +91,7 @@ describe('PostAJobComponent', () => {
         done();
       });
 
-    expect(mockJobService.saveJob).toHaveBeenCalledWith({
-      ...newJob,
-      jobIs: component.jobIs,
-      headOfficeLocation: component.headOfficeLocation
-    });
+    expect(mockJobService.saveJob).toHaveBeenCalledWith(newJob);
   });
 
   it('should fail to save the job', done => {
@@ -124,8 +117,8 @@ describe('PostAJobComponent', () => {
       currency: 'EUR',
       experienceRequired: 'FivePlus',
       frequency: 'Day',
-      headOfficeLocation: '',
-      jobIs: 'remote',
+      headOfficeLocation: 'TEST LOCATION',
+      jobIs: 'onSite',
       jobDescription: 'new-jobdescription',
       jobTitle: 'new-jobtitle',
       rateFrom: 'new-ratefrom',
@@ -137,9 +130,6 @@ describe('PostAJobComponent', () => {
       ],
       whereToApply: 'new-wheretoapply'
     };
-
-    component.jobIs = 'onSite';
-    component.headOfficeLocation = 'TEST LOCATION';
 
     component
       .postJob({
@@ -153,10 +143,6 @@ describe('PostAJobComponent', () => {
         done();
       });
 
-    expect(mockJobService.saveJob).toHaveBeenCalledWith({
-      ...newJob,
-      jobIs: component.jobIs,
-      headOfficeLocation: component.headOfficeLocation
-    });
+    expect(mockJobService.saveJob).toHaveBeenCalledWith(newJob);
   });
 });

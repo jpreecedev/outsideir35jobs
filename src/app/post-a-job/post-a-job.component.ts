@@ -12,27 +12,29 @@ import { Router } from '@angular/router';
   templateUrl: './post-a-job.component.html',
   styleUrls: ['./post-a-job.component.css']
 })
-export class PostAJobComponent implements OnInit, PostAJobForm {
+export class PostAJobComponent implements OnInit {
   public Editor = ClassicEditor;
 
   dropdownList = [];
   dropdownSettings = {};
-
-  jobTitle: string = '';
-  category: Category = 'FrontEnd';
-  headOfficeLocation: string = '';
   selectedSkills: Skill[] = [];
-  skills: Skill[] = [];
-  rateFrom: string = '500';
-  rateTo: string = '550';
-  jobIs: JobIs = 'remote';
-  frequency: Frequency = 'Day';
-  currency: Currency = 'GBP';
-  contractLength: ContractLength = 'SixToTwelve';
-  companyName: string = '';
-  jobDescription: string = '';
-  whereToApply: string = '';
-  experienceRequired: ExperienceRequired = 'ThreeToFive';
+
+  model: PostAJobForm = {
+    jobTitle: '',
+    category: 'FrontEnd',
+    headOfficeLocation: '',
+    skills: [],
+    rateFrom: '500',
+    rateTo: '550',
+    jobIs: 'remote',
+    frequency: 'Day',
+    currency: 'GBP',
+    contractLength: 'SixToTwelve',
+    companyName: '',
+    jobDescription: '',
+    whereToApply: '',
+    experienceRequired: 'ThreeToFive'
+  };
 
   constructor(
     private jobsService: JobsService,
@@ -57,7 +59,7 @@ export class PostAJobComponent implements OnInit, PostAJobForm {
   }: {
     formatted_address: string;
   }) {
-    this.headOfficeLocation = formatted_address;
+    this.model.headOfficeLocation = formatted_address;
   }
 
   postJob(form: NgForm) {
@@ -65,14 +67,10 @@ export class PostAJobComponent implements OnInit, PostAJobForm {
       return Promise.reject();
     }
 
-    const formData = {
-      ...form.value,
-      jobIs: this.jobIs,
-      headOfficeLocation: this.headOfficeLocation
-    };
+    debugger;
 
     return this.jobsService
-      .saveJob(formData)
+      .saveJob(form.value)
       .then(() => {
         this.toastr.success('We have received your post', 'Job Post');
         this.router.navigate(['/thank-you']);

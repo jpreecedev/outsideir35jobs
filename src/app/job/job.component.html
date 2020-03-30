@@ -67,7 +67,7 @@
             <!-- Text -->
             <ul class="list-slim">
               <li>{{ job.jobIs === "remote" ? "Remote" : "On Site" }}</li>
-              <li>
+              <li *ngIf="job.rateFrom && job.rateTo">
                 {{ job.rateFrom | currency: job.currency }} to
                 {{ job.rateTo | currency: job.currency }} per
                 {{ job.frequency }}

@@ -147,17 +147,9 @@
                       class="form-control"
                       id="rateFrom"
                       name="rateFrom"
-                      #rateFromField="ngModel"
                       placeholder="From (min)"
                       [(ngModel)]="model.rateFrom"
-                      required
                     />
-                    <div
-                      *ngIf="rateFromField?.errors?.required"
-                      class="invalid-feedback"
-                    >
-                      Rate from is required
-                    </div>
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -168,17 +160,9 @@
                       class="form-control"
                       id="rateTo"
                       name="rateTo"
-                      #rateToField="ngModel"
                       placeholder="To (max)"
                       [(ngModel)]="model.rateTo"
-                      required
                     />
-                    <div
-                      *ngIf="rateToField?.errors?.required"
-                      class="invalid-feedback"
-                    >
-                      Rate to is required
-                    </div>
                   </div>
                 </div>
               </div>

@@ -13,10 +13,14 @@
   { "id": 12, "itemName": "JavaScript", "display": "JavaScript" },
   { "id": 13, "itemName": "Keystone.js", "display": "Keystone.js" },
   { "id": 14, "itemName": "Node", "display": "Node" },
-  { "id": 15, "itemName": "React", "display": "React" },
-  { "id": 16, "itemName": "Sketch", "display": "Sketch" },
-  { "id": 17, "itemName": "Svelte", "display": "Svelte" },
-  { "id": 18, "itemName": "UX", "display": "UX" },
-  { "id": 19, "itemName": "Vue", "display": "Vue.js" },
-  { "id": 20, "itemName": "Webpack", "display": "Webpack" }
+  { "id": 16, "itemName": "Postgres", "display": "Postgres" },
+  { "id": 17, "itemName": "React", "display": "React" },
+  { "id": 18, "itemName": "Redux", "display": "Redux" },
+  { "id": 19, "itemName": "Ruby", "display": "Ruby" },
+  { "id": 20, "itemName": "RubyOnRails", "display": "Ruby On Rails" },
+  { "id": 21, "itemName": "Sketch", "display": "Sketch" },
+  { "id": 22, "itemName": "Svelte", "display": "Svelte" },
+  { "id": 23, "itemName": "UX", "display": "UX" },
+  { "id": 24, "itemName": "Vue", "display": "Vue.js" },
+  { "id": 25, "itemName": "Webpack", "display": "Webpack" }
 ]

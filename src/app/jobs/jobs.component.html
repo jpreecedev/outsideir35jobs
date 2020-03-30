@@ -107,10 +107,11 @@
                     [routerLink]="['/job', job.id]"
                     class="text-reset text-decoration-none"
                   >
-                    <p class="mb-1">
+                    <p class="mb-1" *ngIf="job.rateFrom && job.rateTo">
                       {{ job.rateFrom | currency: job.currency }} per
                       {{ job.frequency }}
                     </p>
+                    <p class="mb-1" *ngIf="!job.rateFrom || !job.rateTo">Rate unspecified</p>
                   </a>
                 </td>
                 <td>

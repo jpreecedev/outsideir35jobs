@@ -1,27 +1,40 @@
-# Outsideir35jobs
+# Outside IR35 Jobs.io
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+## Outside IR35 jobs for Front-end and Full Stack Developers
 
-## Development server
+My website [Outside IR35 Jobs](https://outsideir35jobs.io) was designed and built to help developer find Outside IR35 contract opportunities, specifically for those identifying as Front-end and Full Stack.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+I build this website myself because I am currently without a gig due to the impact of Coronavirus on the wider economy.
 
-## Code scaffolding
+> !!!
+> If you are looking for a front-end developer, or a full-stack developer with solid .NET experience, please get in touch.
+> !!!
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Please [connect with me on LinkedIn](https://www.linkedin.com/in/jonpreecedev/) for more information.
 
-## Build
+## Technology Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The website itself is very simple.
 
-## Running unit tests
+OutsideIR35Jobs.io was written using Angular 9.1, and scaffolded using the CLI. The website is serverless and hosting in an Amazon S3 bucket, proxyed by Cloudflare.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Angular 9.1
+- Serverless
+- Amazon S3, Cloudflare
+- TypeScript
+- Firebase Firestore
+- Detailed unit tests using Jasmine & Karma
 
-## Running end-to-end tests
+The website took about 10 hours to build over 2 days.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Reasoning
 
-## Further help
+I built this website purely because I was looking to refresh my knowledge on Angular 2+. It has been a little while since I last worked in this arena and wanted to refresh my memory should any appropriate opportunities become available.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The website is of course MVP but could be expanded with some of the following features;
+
+- Authentication - Require users to create an account before submitting a job post
+- Email reminders (achieved using a combination of Firebase triggers and AWS SES)
+- Accept payments for posts via Stripe integration
+
+More to come!

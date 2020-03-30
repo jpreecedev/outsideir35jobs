@@ -11,13 +11,13 @@
 
         <!-- Heading -->
         <h2>
-          Check out some recent postings.
+          Check out our recent job posts.
         </h2>
 
         <!-- Text -->
         <p class="text-muted mb-6 mb-md-8">
-          We get thousands of job postings weekly, but only accept the openings
-          at the top companies.
+          We scour thousands of job postings every week and aggregate them here
+          for your convenience... and we only post the best opportunities.
         </p>
       </div>
       <div class="col-12 col-md-6">
@@ -81,6 +81,11 @@
                     *ngIf="job.headOfficeLocation"
                     >{{ job.headOfficeLocation }}</span
                   >
+                  <span
+                    class="badge badge-primary-soft mr-1"
+                    *ngFor="let skill of job.skills"
+                    >{{ skill.display }}</span
+                  >
                 </a>
               </div>
             </div>
@@ -110,10 +115,10 @@
               <div class="list-group list-group-flush">
                 <a
                   *ngFor="let job of fullStackJobs.slice(0, 10)"
-                  class="list-group-item text-reset text-decoration-none cursor-pointer"
+                  class="list-group-item text-reset text-decoration-none cursor-pointer mb-2"
                   [routerLink]="['/job', job.id]"
                 >
-                  <span class="font-weight-bold mb-1 d-block">
+                  <span class="font-weight-bold d-block">
                     {{ job.jobTitle }}
                   </span>
                   <span
@@ -137,6 +142,11 @@
                     class="font-size-sm text-muted mb-0 d-block"
                     *ngIf="job.headOfficeLocation"
                     >{{ job.headOfficeLocation }}</span
+                  >
+                  <span
+                    class="badge badge-primary-soft mr-1"
+                    *ngFor="let skill of job.skills"
+                    >{{ skill.display }}</span
                   >
                 </a>
               </div>

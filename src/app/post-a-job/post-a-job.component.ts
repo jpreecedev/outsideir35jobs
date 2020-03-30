@@ -67,8 +67,6 @@ export class PostAJobComponent implements OnInit {
       return Promise.reject();
     }
 
-    debugger;
-
     return this.jobsService
       .saveJob(form.value)
       .then(() => {

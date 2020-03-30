@@ -298,24 +298,9 @@
                   class="form-control"
                   id="whereToApply"
                   name="whereToApply"
-                  #whereToApplyField="ngModel"
                   placeholder="https://yoursite.com/job/123/apply"
                   [(ngModel)]="model.whereToApply"
-                  minlength="3"
-                  required
                 />
-                <div
-                  *ngIf="jobTitleField?.errors?.required"
-                  class="invalid-feedback"
-                >
-                  Where to apply is required
-                </div>
-                <div
-                  *ngIf="jobTitleField?.errors?.minlength"
-                  class="invalid-feedback"
-                >
-                  Where to apply must be at least 3 characters long.
-                </div>
               </div>
             </div>
           </div>

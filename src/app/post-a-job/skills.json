@@ -22,5 +22,8 @@
   { "id": 22, "itemName": "Svelte", "display": "Svelte" },
   { "id": 23, "itemName": "UX", "display": "UX" },
   { "id": 24, "itemName": "Vue", "display": "Vue.js" },
-  { "id": 25, "itemName": "Webpack", "display": "Webpack" }
+  { "id": 25, "itemName": "Webpack", "display": "Webpack" },
+  { "id": 26, "itemName": "UnitTesting", "display": "Unit Testing" },
+  { "id": 27, "itemName": "TDD", "display": "TDD" },
+  { "id": 28, "itemName": "NETCore", "display": ".NET Core" }
 ]

@@ -56,26 +56,24 @@
                   class="list-group-item text-reset text-decoration-none cursor-pointer"
                   [routerLink]="['/job', job.id]"
                 >
-                  <span class="font-weight-bold mb-1 d-block">
+                  <span class="font-weight-bold d-block">
                     {{ job.jobTitle }}
                   </span>
+
                   <span
-                    class="font-size-sm text-muted mb-0 d-block"
-                    [ngSwitch]="job.experienceRequired"
+                    class="d-inline-block font-size-sm text-muted mb-0 d-block"
+                    *ngIf="job.rateFrom && job.rateTo"
                   >
-                    <span *ngSwitchCase="'OneYearOrLess'"
-                      >&lt; 1 year experience</span
-                    >
-                    <span *ngSwitchCase="'OneToTwo'">1-2 years experience</span>
-                    <span *ngSwitchCase="'TwoToThree'"
-                      >2-3 years experience</span
-                    >
-                    <span *ngSwitchCase="'ThreeToFive'"
-                      >3-5 years experience</span
-                    >
-                    <span *ngSwitchCase="'FivePlus'">5+ years experience</span>
-                    <span *ngSwitchCase="'TenPlus'">10+ years experience</span>
+                    {{ job.rateFrom | currency: job.currency }} per
+                    {{ job.frequency.toLowerCase() }}
                   </span>
+                  <span
+                    class="d-inline-block font-size-sm text-muted mb-0 d-block"
+                    *ngIf="!job.rateFrom || !job.rateTo"
+                  >
+                    Rate unspecified
+                  </span>
+
                   <span
                     class="font-size-sm text-muted mb-0 d-block"
                     *ngIf="job.headOfficeLocation"
@@ -115,7 +113,7 @@
               <div class="list-group list-group-flush">
                 <a
                   *ngFor="let job of fullStackJobs.slice(0, 10)"
-                  class="list-group-item text-reset text-decoration-none cursor-pointer mb-2"
+                  class="list-group-item text-reset text-decoration-none cursor-pointer"
                   [routerLink]="['/job', job.id]"
                 >
                   <span class="font-weight-bold d-block">

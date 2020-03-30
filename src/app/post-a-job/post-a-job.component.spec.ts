@@ -91,7 +91,11 @@ describe('PostAJobComponent', () => {
         done();
       });
 
-    expect(mockJobService.saveJob).toHaveBeenCalledWith(newJob);
+    expect(mockJobService.saveJob).toHaveBeenCalledWith({
+      ...newJob,
+      jobIs: component.model.jobIs,
+      headOfficeLocation: component.model.headOfficeLocation
+    });
   });
 
   it('should fail to save the job', done => {
@@ -143,6 +147,10 @@ describe('PostAJobComponent', () => {
         done();
       });
 
-    expect(mockJobService.saveJob).toHaveBeenCalledWith(newJob);
+    expect(mockJobService.saveJob).toHaveBeenCalledWith({
+      ...newJob,
+      jobIs: component.model.jobIs,
+      headOfficeLocation: component.model.headOfficeLocation
+    });
   });
 });

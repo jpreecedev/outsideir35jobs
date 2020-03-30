@@ -107,11 +107,13 @@
                     [routerLink]="['/job', job.id]"
                     class="text-reset text-decoration-none"
                   >
-                    <p class="mb-1" *ngIf="job.rateFrom && job.rateTo">
+                    <span *ngIf="job.rateFrom && job.rateTo">
                       {{ job.rateFrom | currency: job.currency }} per
-                      {{ job.frequency }}
-                    </p>
-                    <p class="mb-1" *ngIf="!job.rateFrom || !job.rateTo">Rate unspecified</p>
+                      {{ job.frequency.toLowerCase() }}
+                    </span>
+                    <span *ngIf="!job.rateFrom || !job.rateTo">
+                      Rate unspecified
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -224,10 +226,13 @@
                     [routerLink]="['/job', job.id]"
                     class="text-reset text-decoration-none"
                   >
-                    <p class="mb-1">
+                    <span *ngIf="job.rateFrom && job.rateTo">
                       {{ job.rateFrom | currency: job.currency }} per
-                      {{ job.frequency }}
-                    </p>
+                      {{ job.frequency.toLowerCase() }}
+                    </span>
+                    <span *ngIf="!job.rateFrom || !job.rateTo">
+                      Rate unspecified
+                    </span>
                   </a>
                 </td>
                 <td>

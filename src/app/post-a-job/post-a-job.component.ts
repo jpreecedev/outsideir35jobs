@@ -67,8 +67,14 @@ export class PostAJobComponent implements OnInit {
       return Promise.reject();
     }
 
+    const formData: PostAJobForm = {
+      ...form.value,
+      headOfficeLocation: this.model.headOfficeLocation,
+      jobIs: this.model.jobIs
+    };
+
     return this.jobsService
-      .saveJob(form.value)
+      .saveJob(formData)
       .then(() => {
         this.toastr.success('We have received your post', 'Job Post');
         this.router.navigate(['/thank-you']);

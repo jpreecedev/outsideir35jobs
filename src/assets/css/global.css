@@ -12,7 +12,18 @@ body {
 
 .bg-cover {
   background-size: cover;
-  background-position-y: -200px;
+}
+
+@media screen and (min-width: 768px) {
+  .bg-cover {
+    background-position-y: -100px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .bg-cover {
+    background-position-y: -200px;
+  }
 }
 
 .form-group.large {

@@ -19,7 +19,7 @@ describe('LatestPosts', () => {
     ];
 
     mockJobService = ({
-      getAllJobs: jasmine.createSpy('getAllJobs').and.callFake(() => {
+      getXJobs: jasmine.createSpy('getXJobs').and.callFake(() => {
         return of(input);
       })
     } as any) as JobsService;

@@ -13,7 +13,7 @@ export class LatestPostsComponent implements OnInit {
   constructor(private jobsService: JobsService) {}
 
   ngOnInit(): void {
-    this.jobsService.getAllJobs().subscribe(data => {
+    this.jobsService.getXJobs(5).subscribe(data => {
       this.frontEndJobs = data.filter(job => job.category === 'FrontEnd');
       this.fullStackJobs = data.filter(job => job.category === 'FullStack');
     });

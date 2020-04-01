@@ -17,16 +17,15 @@ describe('JobsService tests', () => {
     })),
     collection: jasmine.createSpy('collection').and.callFake(() => ({
       snapshotChanges: () =>
-        of([
-          {
+        of(
+          input.map(item => ({
             payload: {
               doc: {
-                data: () => input[0],
-                id: input[0].id
+                data: () => item
               }
             }
-          }
-        ]),
+          }))
+        ),
       add: payload => {
         input.push(payload);
         return Promise.resolve();
@@ -66,6 +65,46 @@ describe('JobsService tests', () => {
           { id: 66, display: 'skill3', itemName: 'skill3' }
         ],
         whereToApply: 'test-wheretoapply'
+      },
+      {
+        id: 'test-456',
+        category: 'FullStack',
+        companyName: 'test456-companyname',
+        contractLength: 'SixToTwelve',
+        currency: 'USD',
+        experienceRequired: 'OneYearOrLess',
+        frequency: 'Hour',
+        headOfficeLocation: 'test456-headOfficeLocation',
+        jobDescription: 'test456-jobdescription',
+        jobIs: 'remote',
+        jobTitle: 'test456-jobtitle',
+        rateFrom: 'test456-ratefrom',
+        rateTo: 'test456-rateto',
+        skills: [
+          { id: 22, display: 'skill1', itemName: 'skill1' },
+          { id: 33, display: 'skill2', itemName: 'skill2' }
+        ],
+        whereToApply: 'test456-wheretoapply'
+      },
+      {
+        id: 'test-789',
+        category: 'FrontEnd',
+        companyName: 'test789-companyname',
+        contractLength: 'SixToTwelve',
+        currency: 'USD',
+        experienceRequired: 'OneYearOrLess',
+        frequency: 'Hour',
+        headOfficeLocation: 'test789-headOfficeLocation',
+        jobDescription: 'test789-jobdescription',
+        jobIs: 'remote',
+        jobTitle: 'test789-jobtitle',
+        rateFrom: 'test789-ratefrom',
+        rateTo: 'test789-rateto',
+        skills: [
+          { id: 22, display: 'skill1', itemName: 'skill1' },
+          { id: 33, display: 'skill2', itemName: 'skill2' }
+        ],
+        whereToApply: 'test456-wheretoapply'
       }
     ];
   });
@@ -97,6 +136,15 @@ describe('JobsService tests', () => {
     });
   });
 
+  it('should get 2 jobs (1 front-end, 1 full-stack)', done => {
+    service.getXJobs(1).subscribe(data => {
+      expect(data.length).toEqual(2);
+      expect(data[0].id).toEqual('test-123');
+      expect(data[1].id).toEqual('test-456');
+      done();
+    });
+  });
+
   it('should save the job', done => {
     const newJob: PostAJobForm = {
       id: 'new-test-123',
@@ -121,7 +169,7 @@ describe('JobsService tests', () => {
     };
 
     service.saveJob(newJob).then(() => {
-      expect(input.length).toBe(2);
+      expect(input.length).toBe(4);
       done();
     });
   });

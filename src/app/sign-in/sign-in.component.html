@@ -1,0 +1,46 @@
+<div *ngIf="auth.user | async as user; else showLogin">
+  <div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center no-gutters">
+      <div class="col-12 col-md-4 py-8 py-md-11">
+        <h1 class="font-weight-bold text-center">
+          You are logged in
+        </h1>
+        <button
+          class="btn btn-block btn-primary mb-5"
+          type="submit"
+          (click)="logout()"
+        >
+          Log out
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #showLogin>
+  <div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center no-gutters">
+      <div class="col-12 col-md-4 py-8 py-md-11">
+        <h1 class="font-weight-bold text-center">
+          Sign In or Register
+        </h1>
+
+        <p class="mb-6 text-center text-muted">
+          To ensure simplicity and security, please log in using a third party
+          service.
+        </p>
+
+        <button
+          class="btn btn-block btn-primary mb-5"
+          type="submit"
+          (click)="login()"
+        >
+          Sign in using Google
+        </button>
+
+        <small class="d-block text-center text-muted">
+          If you do not already have an account, we will create one for you.
+        </small>
+      </div>
+    </div>
+  </div>
+</ng-template>

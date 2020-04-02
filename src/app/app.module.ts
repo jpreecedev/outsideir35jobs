@@ -24,6 +24,7 @@ import { PostAJobComponent } from './post-a-job/post-a-job.component';
 import { JobComponent } from './job/job.component';
 import { PlacesComponent } from './places/places.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     PostAJobComponent,
     JobComponent,
     PlacesComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

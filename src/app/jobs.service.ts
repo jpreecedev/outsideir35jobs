@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,8 @@ export class JobsService {
             .filter(x => x.category === 'FullStack')
             .slice(0, count);
           return frontEndJobs.concat(fullStackJobs);
-        })
+        }),
+        shareReplay(1)
       );
   }
 
@@ -56,7 +57,8 @@ export class JobsService {
               ...data
             };
           });
-        })
+        }),
+        shareReplay(1)
       );
   }
 }

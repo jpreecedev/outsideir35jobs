@@ -3,8 +3,7 @@ import { JobsService } from '../jobs.service';
 
 @Component({
   selector: 'app-latest-posts',
-  templateUrl: './latest-posts.component.html',
-  styleUrls: ['./latest-posts.component.css']
+  templateUrl: './latest-posts.component.html'
 })
 export class LatestPostsComponent implements OnInit {
   frontEndJobs: PostAJobForm[] = [];

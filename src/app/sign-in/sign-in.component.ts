@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  templateUrl: './sign-in.component.html'
 })
 export class SignInComponent {
   constructor(public auth: AngularFireAuth, private router: Router) {}

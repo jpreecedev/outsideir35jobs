@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-a-job',
-  templateUrl: './post-a-job.component.html',
-  styleUrls: ['./post-a-job.component.css']
+  templateUrl: './post-a-job.component.html'
 })
 export class PostAJobComponent implements OnInit {
   public Editor = ClassicEditor;

@@ -10,8 +10,7 @@ import {
 
 @Component({
   selector: 'app-places',
-  templateUrl: './places.component.html',
-  styleUrls: ['./places.component.css']
+  templateUrl: './places.component.html'
 })
 export class PlacesComponent implements OnInit, AfterViewInit {
   @Input() addressType: string;

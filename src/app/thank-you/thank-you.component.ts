@@ -2,14 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-thank-you',
-  templateUrl: './thank-you.component.html',
-  styleUrls: ['./thank-you.component.css']
+  templateUrl: './thank-you.component.html'
 })
 export class ThankYouComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

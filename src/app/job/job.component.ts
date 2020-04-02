@@ -4,8 +4,7 @@ import { JobsService } from '../jobs.service';
 
 @Component({
   selector: 'app-job',
-  templateUrl: './job.component.html',
-  styleUrls: ['./job.component.css']
+  templateUrl: './job.component.html'
 })
 export class JobComponent implements OnInit {
   job: PostAJobForm;

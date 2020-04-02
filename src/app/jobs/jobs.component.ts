@@ -3,8 +3,7 @@ import { JobsService } from '../jobs.service';
 
 @Component({
   selector: 'app-jobs',
-  templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.css']
+  templateUrl: './jobs.component.html'
 })
 export class JobsComponent implements OnInit {
   frontEndJobs: PostAJobForm[] = [];

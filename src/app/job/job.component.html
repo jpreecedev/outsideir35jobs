@@ -1,4 +1,4 @@
-<section class="pt-5 pt-md-11" *ngIf="job">
+<section class="pt-5 pt-md-11" *ngIf="job$ | async as job">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-12 col-md">

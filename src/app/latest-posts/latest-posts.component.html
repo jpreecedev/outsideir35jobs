@@ -30,14 +30,20 @@
       </div>
     </div>
     <!-- / .row -->
-    <div class="row">
+    <div class="row" *ngIf="allJobs$ | async as allJobs">
       <div class="col-12 col-md-6">
         <!-- Card -->
         <div
           class="card card-border border-primary shadow-light-lg mb-6 mb-md-8"
           data-aos="fade-up"
         >
-          <div class="card-body">
+          <div
+            class="card-body"
+            *ngIf="
+              allJobs | latestPosts: 'FrontEnd';
+              let frontEndJobs = $implicit
+            "
+          >
             <!-- Heading -->
             <h6 class="text-uppercase text-primary d-inline-block mb-5 mr-1">
               Front-end
@@ -52,7 +58,7 @@
             <div>
               <div class="list-group list-group-flush">
                 <a
-                  *ngFor="let job of frontEndJobs.slice(0, 10)"
+                  *ngFor="let job of frontEndJobs"
                   class="list-group-item text-reset text-decoration-none cursor-pointer"
                   [routerLink]="['/job', job.id]"
                 >
@@ -97,7 +103,13 @@
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          <div class="card-body">
+          <div
+            class="card-body"
+            *ngIf="
+              allJobs | latestPosts: 'FullStack';
+              let fullStackJobs = $implicit
+            "
+          >
             <!-- Heading -->
             <h6 class="text-uppercase text-success d-inline-block mb-5 mr-1">
               Full Stack
@@ -112,7 +124,7 @@
             <div>
               <div class="list-group list-group-flush">
                 <a
-                  *ngFor="let job of fullStackJobs.slice(0, 10)"
+                  *ngFor="let job of fullStackJobs"
                   class="list-group-item text-reset text-decoration-none cursor-pointer"
                   [routerLink]="['/job', job.id]"
                 >

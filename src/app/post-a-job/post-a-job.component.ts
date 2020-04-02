@@ -61,7 +61,7 @@ export class PostAJobComponent implements OnInit {
     this.model.headOfficeLocation = formatted_address;
   }
 
-  postJob(form: NgForm) {
+  async postJob(form: NgForm) {
     if (!form.valid) {
       return Promise.reject();
     }
@@ -72,18 +72,16 @@ export class PostAJobComponent implements OnInit {
       jobIs: this.model.jobIs
     };
 
-    return this.jobsService
-      .saveJob(formData)
-      .then(() => {
-        this.toastr.success('We have received your post', 'Job Post');
-        this.router.navigate(['/thank-you']);
-      })
-      .catch(error => {
-        this.toastr.error(
-          'There was an error submitting your post.  Please try again.',
-          'Job Post'
-        );
-        console.error(error);
-      });
+    try {
+      await this.jobsService.saveJob(formData);
+      this.toastr.success('We have received your post', 'Job Post');
+      this.router.navigate(['/thank-you']);
+    } catch (error) {
+      this.toastr.error(
+        'There was an error submitting your post.  Please try again.',
+        'Job Post'
+      );
+      console.error(error);
+    }
   }
 }

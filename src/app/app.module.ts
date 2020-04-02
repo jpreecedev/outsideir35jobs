@@ -25,6 +25,7 @@ import { JobComponent } from './job/job.component';
 import { PlacesComponent } from './places/places.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { LatestPostsPipe } from './latest-posts.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     JobComponent,
     PlacesComponent,
     ThankYouComponent,
-    SignInComponent
+    SignInComponent,
+    LatestPostsPipe
   ],
   imports: [
     BrowserModule,

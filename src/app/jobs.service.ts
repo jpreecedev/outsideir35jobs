@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JobsService {
   constructor(private firestore: AngularFirestore) {}
@@ -21,21 +21,21 @@ export class JobsService {
       .collection<PostAJobForm>('jobs')
       .snapshotChanges()
       .pipe(
-        map(project => {
-          const allJobs = project.map(value => {
+        map((project) => {
+          const allJobs = project.map((value) => {
             const data = value.payload.doc.data();
             const documentId = value.payload.doc.id;
             return <PostAJobForm>{
               id: documentId,
-              ...data
+              ...data,
             };
           });
 
           const frontEndJobs = allJobs
-            .filter(x => x.category === 'FrontEnd')
+            .filter((x) => x.category === 'FrontEnd')
             .slice(0, count);
           const fullStackJobs = allJobs
-            .filter(x => x.category === 'FullStack')
+            .filter((x) => x.category === 'FullStack')
             .slice(0, count);
           return frontEndJobs.concat(fullStackJobs);
         }),
@@ -48,13 +48,13 @@ export class JobsService {
       .collection<PostAJobForm>('jobs')
       .snapshotChanges()
       .pipe(
-        map(project => {
-          return project.map(value => {
+        map((project) => {
+          return project.map((value) => {
             const data = value.payload.doc.data();
             const documentId = value.payload.doc.id;
             return <PostAJobForm>{
               id: documentId,
-              ...data
+              ...data,
             };
           });
         }),

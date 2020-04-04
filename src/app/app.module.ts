@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -26,6 +26,7 @@ import { PlacesComponent } from './places/places.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { LatestPostsPipe } from './latest-posts.pipe';
+import { SentryErrorHandler } from './sentry.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { LatestPostsPipe } from './latest-posts.pipe';
     PlacesComponent,
     ThankYouComponent,
     SignInComponent,
-    LatestPostsPipe
+    LatestPostsPipe,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +55,9 @@ import { LatestPostsPipe } from './latest-posts.pipe';
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [{ provide: ErrorHandler, useClass: SentryErrorHandler }],
 })
 export class AppModule {}

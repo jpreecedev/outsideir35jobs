@@ -5,12 +5,12 @@ import {
   Output,
   OnInit,
   AfterViewInit,
-  Input
+  Input,
 } from '@angular/core';
 
 @Component({
   selector: 'app-places',
-  templateUrl: './places.component.html'
+  templateUrl: './places.component.html',
 })
 export class PlacesComponent implements OnInit, AfterViewInit {
   @Input() addressType: string;
@@ -38,7 +38,7 @@ export class PlacesComponent implements OnInit, AfterViewInit {
     const autocomplete = new google.maps.places.Autocomplete(
       this.addresstext.nativeElement,
       {
-        types: [this.addressType]
+        types: [this.addressType],
       }
     );
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
@@ -47,7 +47,7 @@ export class PlacesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  invokeEvent(place: Object) {
+  invokeEvent(place: object) {
     this.setAddress.emit(place);
   }
 }

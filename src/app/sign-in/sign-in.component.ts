@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { auth as firebaseAuth } from 'firebase/app';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html'
+  templateUrl: './sign-in.component.html',
 })
 export class SignInComponent {
   constructor(public auth: AngularFireAuth, private router: Router) {}
 
   login() {
     this.auth
-      .signInWithPopup(new auth.GoogleAuthProvider())
+      .signInWithPopup(new firebaseAuth.GoogleAuthProvider())
       .then(({ user }) => {
         if (user) {
           this.router.navigate(['post-a-job']);

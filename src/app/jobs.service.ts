@@ -25,10 +25,10 @@ export class JobsService {
           const allJobs = project.map((value) => {
             const data = value.payload.doc.data();
             const documentId = value.payload.doc.id;
-            return <PostAJobForm>{
+            return {
               id: documentId,
               ...data,
-            };
+            } as PostAJobForm;
           });
 
           const frontEndJobs = allJobs
@@ -52,10 +52,10 @@ export class JobsService {
           return project.map((value) => {
             const data = value.payload.doc.data();
             const documentId = value.payload.doc.id;
-            return <PostAJobForm>{
+            return {
               id: documentId,
               ...data,
-            };
+            } as PostAJobForm;
           });
         }),
         shareReplay(1)

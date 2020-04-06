@@ -3,18 +3,18 @@ import { JobsService } from '../jobs.service';
 
 @Component({
   selector: 'app-jobs',
-  templateUrl: './jobs.component.html'
+  templateUrl: './jobs.component.html',
 })
 export class JobsComponent implements OnInit {
-  frontEndJobs: PostAJobForm[] = [];
-  fullStackJobs: PostAJobForm[] = [];
+  frontEndJobs: Job[] = [];
+  fullStackJobs: Job[] = [];
 
   constructor(private jobsService: JobsService) {}
 
   ngOnInit(): void {
-    this.jobsService.getAllJobs().subscribe(data => {
-      this.frontEndJobs = data.filter(job => job.category === 'FrontEnd');
-      this.fullStackJobs = data.filter(job => job.category === 'FullStack');
+    this.jobsService.getAllJobs().subscribe((data) => {
+      this.frontEndJobs = data.filter((job) => job.category === 'FrontEnd');
+      this.fullStackJobs = data.filter((job) => job.category === 'FullStack');
     });
   }
 }

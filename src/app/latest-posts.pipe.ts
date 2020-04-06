@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'latestPosts'
+  name: 'latestPosts',
 })
 export class LatestPostsPipe implements PipeTransform {
-  transform(value: PostAJobForm[], category: string): PostAJobForm[] {
-    return value.filter(x => x.category === category);
+  transform(value: Job[], category: string): Job[] {
+    return value.filter((x) => x.category === category);
   }
 }

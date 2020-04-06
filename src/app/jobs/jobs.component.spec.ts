@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { JobsService } from '../jobs.service';
 
 describe('JobsComponent', () => {
-  let input: PostAJobForm[] = [];
+  let input: Job[] = [];
   let component: JobsComponent;
 
   let mockJobService: JobsService;
@@ -11,17 +11,17 @@ describe('JobsComponent', () => {
   beforeEach(() => {
     input = [
       {
-        category: 'FrontEnd'
-      } as PostAJobForm,
+        category: 'FrontEnd',
+      } as Job,
       {
-        category: 'FullStack'
-      } as PostAJobForm
+        category: 'FullStack',
+      } as Job,
     ];
 
     mockJobService = ({
       getAllJobs: jasmine.createSpy('getAllJobs').and.callFake(() => {
         return of(input);
-      })
+      }),
     } as any) as JobsService;
 
     component = new JobsComponent(mockJobService);

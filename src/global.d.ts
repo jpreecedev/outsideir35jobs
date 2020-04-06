@@ -1,6 +1,6 @@
 declare const google: any;
 
-interface PostAJobForm {
+interface Job {
   id?: string;
   jobTitle: string;
   category: 'FrontEnd' | 'FullStack';
@@ -16,6 +16,8 @@ interface PostAJobForm {
   jobDescription: string;
   whereToApply: string;
   experienceRequired: ExperienceRequired;
+  created: Date;
+  expires: Date;
 }
 
 type ExperienceRequired =

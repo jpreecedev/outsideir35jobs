@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 import * as skills from './skills.json';
 import { JobsService } from '../jobs.service';
-import { Router } from '@angular/router';
+import { getExpirationDate } from '../utils';
 
 @Component({
   selector: 'app-post-a-job',
-  templateUrl: './post-a-job.component.html'
+  templateUrl: './post-a-job.component.html',
 })
 export class PostAJobComponent implements OnInit {
   public Editor = ClassicEditor;
@@ -18,7 +19,7 @@ export class PostAJobComponent implements OnInit {
   dropdownSettings = {};
   selectedSkills: Skill[] = [];
 
-  model: PostAJobForm = {
+  model: Job = {
     jobTitle: '',
     category: 'FrontEnd',
     headOfficeLocation: '',
@@ -32,7 +33,9 @@ export class PostAJobComponent implements OnInit {
     companyName: '',
     jobDescription: '',
     whereToApply: '',
-    experienceRequired: 'ThreeToFive'
+    experienceRequired: 'ThreeToFive',
+    created: new Date(),
+    expires: getExpirationDate(),
   };
 
   constructor(
@@ -49,12 +52,12 @@ export class PostAJobComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'Unselect All',
       enableSearchFilter: true,
-      classes: 'custom-multiselect'
+      classes: 'custom-multiselect',
     };
   }
 
   setEstablishmentAddress({
-    formatted_address
+    formatted_address,
   }: {
     formatted_address: string;
   }) {
@@ -66,10 +69,12 @@ export class PostAJobComponent implements OnInit {
       return Promise.reject();
     }
 
-    const formData: PostAJobForm = {
+    const formData: Job = {
       ...form.value,
       headOfficeLocation: this.model.headOfficeLocation,
-      jobIs: this.model.jobIs
+      jobIs: this.model.jobIs,
+      created: new Date(),
+      expires: getExpirationDate(),
     };
 
     try {

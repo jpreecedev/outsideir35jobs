@@ -8,28 +8,33 @@ import { map, shareReplay } from 'rxjs/operators';
 export class JobsService {
   constructor(private firestore: AngularFirestore) {}
 
-  saveJob(job: PostAJobForm) {
-    return this.firestore.collection<PostAJobForm>('jobs').add(job);
+  saveJob(job: Job) {
+    return this.firestore.collection<Job>('jobs').add(job);
   }
 
   getJob(id: string) {
-    return this.firestore.doc<PostAJobForm>(`jobs/${id}`).valueChanges();
+    return this.firestore.doc<Job>(`jobs/${id}`).valueChanges();
   }
 
   getXJobs(count: number) {
     return this.firestore
-      .collection<PostAJobForm>('jobs')
+      .collection<Job>('jobs', (x) => x.where('expires', '>', new Date()))
       .snapshotChanges()
       .pipe(
         map((project) => {
-          const allJobs = project.map((value) => {
-            const data = value.payload.doc.data();
-            const documentId = value.payload.doc.id;
-            return {
-              id: documentId,
-              ...data,
-            } as PostAJobForm;
-          });
+          const allJobs = project
+            .map((value) => {
+              const data = value.payload.doc.data();
+              const documentId = value.payload.doc.id;
+              return {
+                id: documentId,
+                ...data,
+              } as Job;
+            })
+            .sort(
+              (a, b) =>
+                new Date(b.created).getTime() - new Date(a.created).getTime()
+            );
 
           const frontEndJobs = allJobs
             .filter((x) => x.category === 'FrontEnd')
@@ -37,26 +42,37 @@ export class JobsService {
           const fullStackJobs = allJobs
             .filter((x) => x.category === 'FullStack')
             .slice(0, count);
+
           return frontEndJobs.concat(fullStackJobs);
         }),
+
         shareReplay(1)
       );
   }
 
   getAllJobs() {
     return this.firestore
-      .collection<PostAJobForm>('jobs')
+      .collection<Job>('jobs', (x) => x.where('expires', '>', new Date()))
       .snapshotChanges()
       .pipe(
         map((project) => {
-          return project.map((value) => {
-            const data = value.payload.doc.data();
-            const documentId = value.payload.doc.id;
-            return {
-              id: documentId,
-              ...data,
-            } as PostAJobForm;
-          });
+          return project
+            .map((value) => {
+              const data = value.payload.doc.data();
+              const documentId = value.payload.doc.id;
+
+              const job = {
+                id: documentId,
+                ...data,
+              } as Job;
+
+              return job;
+            })
+
+            .sort(
+              (a, b) =>
+                new Date(b.created).getTime() - new Date(a.created).getTime()
+            );
         }),
         shareReplay(1)
       );

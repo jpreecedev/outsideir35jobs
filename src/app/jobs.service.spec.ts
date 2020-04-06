@@ -4,41 +4,47 @@ import { of } from 'rxjs';
 
 import { JobsService } from './jobs.service';
 
+function getExpirationDate() {
+  var date = new Date(1586158122218);
+  date.setDate(date.getDate() + 30);
+  return date;
+}
+
 describe('JobsService tests', () => {
   let service: JobsService;
   let angularFirestore: AngularFirestore;
 
-  let input: PostAJobForm[] = [];
+  let input: Job[] = [];
 
   const firestoreStub = {
     doc: jasmine.createSpy('doc').and.callFake((arg: string) => ({
       valueChanges: () =>
-        of(input.find(x => x.id === arg.substr(arg.indexOf('/') + 1)))
+        of(input.find((x) => x.id === arg.substr(arg.indexOf('/') + 1))),
     })),
     collection: jasmine.createSpy('collection').and.callFake(() => ({
       snapshotChanges: () =>
         of(
-          input.map(item => ({
+          input.map((item) => ({
             payload: {
               doc: {
-                data: () => item
-              }
-            }
+                data: () => item,
+              },
+            },
           }))
         ),
-      add: payload => {
+      add: (payload) => {
         input.push(payload);
         return Promise.resolve();
-      }
-    }))
+      },
+    })),
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         JobsService,
-        { provide: AngularFirestore, useValue: firestoreStub }
-      ]
+        { provide: AngularFirestore, useValue: firestoreStub },
+      ],
     });
 
     service = TestBed.inject(JobsService);
@@ -62,9 +68,11 @@ describe('JobsService tests', () => {
         skills: [
           { id: 44, display: 'skill1', itemName: 'skill1' },
           { id: 55, display: 'skill2', itemName: 'skill2' },
-          { id: 66, display: 'skill3', itemName: 'skill3' }
+          { id: 66, display: 'skill3', itemName: 'skill3' },
         ],
-        whereToApply: 'test-wheretoapply'
+        whereToApply: 'test-wheretoapply',
+        created: new Date(),
+        expires: getExpirationDate(),
       },
       {
         id: 'test-456',
@@ -82,9 +90,11 @@ describe('JobsService tests', () => {
         rateTo: 'test456-rateto',
         skills: [
           { id: 22, display: 'skill1', itemName: 'skill1' },
-          { id: 33, display: 'skill2', itemName: 'skill2' }
+          { id: 33, display: 'skill2', itemName: 'skill2' },
         ],
-        whereToApply: 'test456-wheretoapply'
+        whereToApply: 'test456-wheretoapply',
+        created: new Date(1586158122218),
+        expires: getExpirationDate(),
       },
       {
         id: 'test-789',
@@ -102,10 +112,12 @@ describe('JobsService tests', () => {
         rateTo: 'test789-rateto',
         skills: [
           { id: 22, display: 'skill1', itemName: 'skill1' },
-          { id: 33, display: 'skill2', itemName: 'skill2' }
+          { id: 33, display: 'skill2', itemName: 'skill2' },
         ],
-        whereToApply: 'test456-wheretoapply'
-      }
+        whereToApply: 'test456-wheretoapply',
+        created: new Date(1586158122218),
+        expires: getExpirationDate(),
+      },
     ];
   });
 
@@ -113,31 +125,31 @@ describe('JobsService tests', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get a job', done => {
-    service.getJob('test-123').subscribe(data => {
+  it('should get a job', (done) => {
+    service.getJob('test-123').subscribe((data) => {
       expect(data).toEqual(input[0]);
       expect(firestoreStub.doc).toHaveBeenCalledWith('jobs/test-123');
       done();
     });
   });
 
-  it('should not get a job with an invalid id', done => {
-    service.getJob('test-444').subscribe(data => {
+  it('should not get a job with an invalid id', (done) => {
+    service.getJob('test-444').subscribe((data) => {
       expect(data).toBeUndefined();
       expect(firestoreStub.doc).toHaveBeenCalledWith('jobs/test-444');
       done();
     });
   });
 
-  it('should get all jobs', done => {
-    service.getAllJobs().subscribe(data => {
+  it('should get all jobs', (done) => {
+    service.getAllJobs().subscribe((data) => {
       expect(data).toEqual(input);
       done();
     });
   });
 
-  it('should get 2 jobs (1 front-end, 1 full-stack)', done => {
-    service.getXJobs(1).subscribe(data => {
+  it('should get 2 jobs (1 front-end, 1 full-stack)', (done) => {
+    service.getXJobs(1).subscribe((data) => {
       expect(data.length).toEqual(2);
       expect(data[0].id).toEqual('test-123');
       expect(data[1].id).toEqual('test-456');
@@ -145,8 +157,8 @@ describe('JobsService tests', () => {
     });
   });
 
-  it('should save the job', done => {
-    const newJob: PostAJobForm = {
+  it('should save the job', (done) => {
+    const newJob: Job = {
       id: 'new-test-123',
       category: 'FrontEnd',
       companyName: 'new-test-companyname',
@@ -163,9 +175,11 @@ describe('JobsService tests', () => {
       skills: [
         { id: 44, display: 'skill1', itemName: 'skill1' },
         { id: 55, display: 'skill2', itemName: 'skill2' },
-        { id: 66, display: 'skill3', itemName: 'skill3' }
+        { id: 66, display: 'skill3', itemName: 'skill3' },
       ],
-      whereToApply: 'test-wheretoapply'
+      whereToApply: 'test-wheretoapply',
+      created: new Date(1586158122218),
+      expires: getExpirationDate(),
     };
 
     service.saveJob(newJob).then(() => {

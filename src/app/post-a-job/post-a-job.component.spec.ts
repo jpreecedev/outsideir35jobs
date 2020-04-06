@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobsService } from '../jobs.service';
 import { NgForm } from '@angular/forms';
+import { getExpirationDate } from '../utils';
 
 describe('PostAJobComponent', () => {
-  let input: PostAJobForm[] = [];
+  let input: Job[] = [];
   let component: PostAJobComponent;
 
   let mockJobService: JobsService;
@@ -31,10 +32,12 @@ describe('PostAJobComponent', () => {
         skills: [
           { id: 44, display: 'skill1', itemName: 'skill1' },
           { id: 55, display: 'skill2', itemName: 'skill2' },
-          { id: 66, display: 'skill3', itemName: 'skill3' }
+          { id: 66, display: 'skill3', itemName: 'skill3' },
         ],
-        whereToApply: 'test-wheretoapply'
-      }
+        whereToApply: 'test-wheretoapply',
+        created: new Date(),
+        expires: getExpirationDate(),
+      },
     ];
 
     mockToastrService = jasmine.createSpyObj(['success', 'error']);
@@ -42,14 +45,12 @@ describe('PostAJobComponent', () => {
     mockRouterService = jasmine.createSpyObj(['navigate']);
   });
 
-  it('should save the job', done => {
+  it('should save the job', (done) => {
     mockJobService = ({
-      saveJob: jasmine
-        .createSpy('saveJob')
-        .and.callFake((job: PostAJobForm) => {
-          input.push(job);
-          return Promise.resolve();
-        })
+      saveJob: jasmine.createSpy('saveJob').and.callFake((job: Job) => {
+        input.push(job);
+        return Promise.resolve();
+      }),
     } as any) as JobsService;
 
     component = new PostAJobComponent(
@@ -58,7 +59,7 @@ describe('PostAJobComponent', () => {
       mockRouterService
     );
 
-    const newJob: PostAJobForm = {
+    const newJob: Job = {
       id: '123',
       category: 'FullStack',
       companyName: 'new-companyname',
@@ -75,15 +76,17 @@ describe('PostAJobComponent', () => {
       skills: [
         { id: 44, display: 'skill1', itemName: 'skill1' },
         { id: 55, display: 'skill2', itemName: 'skill2' },
-        { id: 66, display: 'skill3', itemName: 'skill3' }
+        { id: 66, display: 'skill3', itemName: 'skill3' },
       ],
-      whereToApply: 'new-wheretoapply'
+      whereToApply: 'new-wheretoapply',
+      created: new Date(),
+      expires: getExpirationDate(),
     };
 
     component
       .postJob({
         valid: true,
-        value: newJob
+        value: newJob,
       } as NgForm)
       .finally(() => {
         expect(mockToastrService.success).toHaveBeenCalled();
@@ -94,17 +97,15 @@ describe('PostAJobComponent', () => {
     expect(mockJobService.saveJob).toHaveBeenCalledWith({
       ...newJob,
       jobIs: component.model.jobIs,
-      headOfficeLocation: component.model.headOfficeLocation
+      headOfficeLocation: component.model.headOfficeLocation,
     });
   });
 
-  it('should fail to save the job', done => {
+  it('should fail to save the job', (done) => {
     mockJobService = ({
-      saveJob: jasmine
-        .createSpy('saveJob')
-        .and.callFake((job: PostAJobForm) => {
-          return Promise.reject('Cos reasons');
-        })
+      saveJob: jasmine.createSpy('saveJob').and.callFake((job: Job) => {
+        return Promise.reject('Cos reasons');
+      }),
     } as any) as JobsService;
 
     component = new PostAJobComponent(
@@ -113,7 +114,7 @@ describe('PostAJobComponent', () => {
       mockRouterService
     );
 
-    const newJob: PostAJobForm = {
+    const newJob: Job = {
       id: '123',
       category: 'FullStack',
       companyName: 'new-companyname',
@@ -130,15 +131,17 @@ describe('PostAJobComponent', () => {
       skills: [
         { id: 44, display: 'skill1', itemName: 'skill1' },
         { id: 55, display: 'skill2', itemName: 'skill2' },
-        { id: 66, display: 'skill3', itemName: 'skill3' }
+        { id: 66, display: 'skill3', itemName: 'skill3' },
       ],
-      whereToApply: 'new-wheretoapply'
+      whereToApply: 'new-wheretoapply',
+      created: new Date(),
+      expires: getExpirationDate(),
     };
 
     component
       .postJob({
         valid: true,
-        value: newJob
+        value: newJob,
       } as NgForm)
       .finally(() => {
         expect(mockToastrService.success).not.toHaveBeenCalled();
@@ -150,7 +153,7 @@ describe('PostAJobComponent', () => {
     expect(mockJobService.saveJob).toHaveBeenCalledWith({
       ...newJob,
       jobIs: component.model.jobIs,
-      headOfficeLocation: component.model.headOfficeLocation
+      headOfficeLocation: component.model.headOfficeLocation,
     });
   });
 });

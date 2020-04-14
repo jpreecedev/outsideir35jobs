@@ -16,19 +16,18 @@ const routes: Routes = [
   {
     path: 'post-a-job',
     component: PostAJobComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['sign-in']))
+    ...canActivate(() => redirectUnauthorizedTo(['sign-in'])),
   },
   { path: 'thank-you', component: ThankYouComponent },
-  { path: 'sign-in', component: SignInComponent }
+  { path: 'sign-in', component: SignInComponent },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
-      useHash: true
-    })
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
